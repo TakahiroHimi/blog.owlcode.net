@@ -1,3 +1,33 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "extends": [
+    "next",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "next/core-web-vitals"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "sourceType": "module"
+    }
+  },
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "prettier/prettier": "error",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "17.0.2"
+    }
+  }
 }
