@@ -1,9 +1,11 @@
 import { css } from '@emotion/react'
+import { getAllPostIds, getPostData } from 'lib/posts'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
 import React from 'react'
+import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share'
 import colors from 'styles/colors'
-import { getAllPostIds, getPostData } from '../../lib/posts'
 
 export default function Post({
   postData,
@@ -14,6 +16,8 @@ export default function Post({
     contentHtml: string
   }
 }) {
+  const router = useRouter()
+
   return (
     <React.Fragment>
       <Head>
@@ -24,6 +28,18 @@ export default function Post({
         <h1 css={title}>{postData.title}</h1>
         <div css={article} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
+      <aside css={shareButtons}>
+        <TwitterShareButton
+          url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
+          title={postData.title}
+          via={process.env.NEXT_PUBLIC_TWITTER_ID}
+        >
+          <TwitterIcon round size={50} />
+        </TwitterShareButton>
+        <FacebookShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
+          <FacebookIcon round size={50} />
+        </FacebookShareButton>
+      </aside>
     </React.Fragment>
   )
 }
@@ -59,9 +75,17 @@ const title = css`
   margin-bottom: 64px;
 `
 
+const shareButtons = css`
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 64px;
+`
+
 const article = css`
   * {
     font-family: 'Noto Sans JP', sans-serif;
+    color: ${colors.text};
   }
 
   p {
