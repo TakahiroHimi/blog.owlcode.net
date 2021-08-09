@@ -54,13 +54,13 @@ const listItem = css`
 `
 
 const createdAt = css`
-  font-size: 18px;
+  font-size: 1rem;
   color: ${colors.gray200};
   margin-bottom: 8px;
 `
 
 const titleText = css`
-  font-size: 24px;
+  font-size: 1.7rem;
   color: ${colors.blue400};
   text-decoration: none;
   cursor: pointer;

@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import React from 'react'
-import Date from '../../components/date'
+import colors from 'styles/colors'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 
 export default function Post({
@@ -20,10 +20,8 @@ export default function Post({
         <title>{postData.title}</title>
       </Head>
       <article>
-        <h1>{postData.title}</h1>
-        <div>
-          <Date dateString={postData.created} />
-        </div>
+        <p css={date}>{postData.created}</p>
+        <h1 css={title}>{postData.title}</h1>
         <div css={article} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
     </React.Fragment>
@@ -47,6 +45,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   }
 }
+
+const date = css`
+  font-size: 1rem;
+  color: ${colors.gray200};
+  margin-bottom: 8px;
+`
+
+const title = css`
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: ${colors.blue400};
+  margin-bottom: 64px;
+`
 
 const article = css`
   * {
