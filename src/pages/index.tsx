@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import Header from 'components/layouts/Header'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -24,22 +23,19 @@ export default function Home({
       <Head>
         <title>blog.thimi.io</title>
       </Head>
-      <Header />
-      <main css={container}>
-        <section>
-          <ul>
-            {allPostsData.map(({ id, created, title }) => (
-              <li key={id} css={listItem}>
-                <p css={createdAt}>{created}</p>
-                <Link href={`/posts/${id}`}>
-                  <a css={titleText}>{title}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <nav></nav>
-      </main>
+      <section>
+        <ul>
+          {allPostsData.map(({ id, created, title }) => (
+            <li key={id} css={listItem}>
+              <p css={createdAt}>{created}</p>
+              <Link href={`/posts/${id}`}>
+                <a css={titleText}>{title}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <nav></nav>
     </React.Fragment>
   )
 }
@@ -52,12 +48,6 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   }
 }
-
-const container = css`
-  margin: 32px auto 64px;
-  width: 90%;
-  max-width: 960px;
-`
 
 const listItem = css`
   margin-bottom: 32px;
