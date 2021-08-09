@@ -1,6 +1,8 @@
 import { css } from '@emotion/react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { ReactNode, VFC } from 'react'
+import colors from 'styles/colors'
 import github from './github.png'
 import Header from './Header/Header'
 import twitter from './twitter.png'
@@ -39,6 +41,15 @@ const Layout: VFC<Props> = ({ children }) => {
           </li>
         </ul>
         <div css={container}>{children}</div>
+        <footer>
+          <nav>
+            <Link href="/">
+              <a css={link}>
+                <p css={toHome}>blog.thimi.io</p>
+              </a>
+            </Link>
+          </nav>
+        </footer>
       </main>
     </React.Fragment>
   )
@@ -63,4 +74,18 @@ const container = css`
   margin: 32px auto 0px;
   width: 90%;
   max-width: 960px;
+`
+
+const link = css`
+  text-decoration: none;
+  cursor: pointer;
+`
+
+const toHome = css`
+  color: ${colors.blue400};
+  text-align: center;
+  padding: 18px 0px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgba(204, 204, 204, 0.2);
 `

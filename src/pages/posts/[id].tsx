@@ -79,7 +79,7 @@ const shareButtons = css`
   display: flex;
   justify-content: center;
   gap: 32px;
-  margin-top: 64px;
+  margin: 64px 0px 32px;
 `
 
 const article = css`
