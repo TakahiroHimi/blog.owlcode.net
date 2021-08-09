@@ -10,7 +10,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         styles={css`
           html,
           body {
-            font-family: 'Noto Sans JP', sans-serif;
+            font-family: 'Roboto', 'Noto Sans JP', sans-serif;
           }
         `}
       />

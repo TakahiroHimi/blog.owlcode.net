@@ -1,5 +1,7 @@
 import Date from 'components/date'
+import Header from 'components/layouts/Header'
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import { getSortedPostsData } from '../lib/posts'
@@ -18,6 +20,10 @@ export default function Home({
 }) {
   return (
     <React.Fragment>
+      <Head>
+        <title>blog.thimi.io</title>
+      </Head>
+      <Header />
       <section>
         <p>[Your Self Introduction]</p>
         <p>
