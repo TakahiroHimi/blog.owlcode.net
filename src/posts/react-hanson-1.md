@@ -93,3 +93,11 @@ const [checked, toggle] = useReducer((checked) => !checked, false)
 ## 8 章
 
 faker ライブラリを初めて知る
+
+## 9 章
+
+ErrorBoundary、Suspense について初めてちゃんと学ぶ
+
+## 10 章
+
+propsTypes について、ずっと React.VoidFunctionComponent の定義に入ってるけどこれはどう使うのだろうと思っていたが疑問が解けた
