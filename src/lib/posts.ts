@@ -18,6 +18,9 @@ const getPostFile = (id: string) => {
   return postDirEntry.find((e) => e.name.substr(-3) === '.md')
 }
 
+/**
+ * 全ての記事のmedaデータを取得後日付順にソートして返却する関数
+ */
 export function getSortedPostsData() {
   // /posts 配下のディレクトリ、ファイル名を取得する
   const dirEntry = fs.readdirSync(postsDir, { withFileTypes: true })
@@ -71,6 +74,9 @@ export function getAllPostIds() {
   return allPostIds
 }
 
+/**
+ * 引数で指定されたidの記事内容をHTMLで返却する関数
+ */
 export async function getPostData(id: string) {
   const postFile = getPostFile(id)
   if (postFile === undefined) return
