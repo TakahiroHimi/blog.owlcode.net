@@ -3,15 +3,7 @@ import matter from 'gray-matter'
 import path from 'path'
 import remark from 'remark'
 import html from 'remark-html'
-
-type MetaData = {
-  id: string
-  created: string
-  updated: string
-  title: string
-  visual: string
-  tags: string[]
-}
+import { MetaData } from 'utils/types'
 
 const postsDir = path.join(process.cwd(), 'src/posts')
 
