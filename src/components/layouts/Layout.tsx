@@ -6,7 +6,7 @@ import colors from 'styles/colors'
 import github from './github.png'
 import Header from './Header/Header'
 import twitter from './twitter.png'
-import zenn from './zenn.png'
+import zenn from './zenn.svg'
 
 type Props = {
   children: ReactNode
@@ -36,7 +36,7 @@ const Layout: VFC<Props> = ({ children }) => {
           </li>
           <li>
             <a href={'https://zenn.dev/thim'} target="_blank" rel="noreferrer">
-              <Image src={zenn} alt="zennロゴ画像" objectFit="contain" height={27} width={113} />
+              <Image src={zenn} alt="zennロゴ画像" objectFit="contain" height={30} width={30} />
             </a>
           </li>
         </ul>
