@@ -4,34 +4,59 @@ import path from 'path'
 import remark from 'remark'
 import html from 'remark-html'
 
-const postsDirectory = path.join(process.cwd(), 'src/posts')
+type MetaData = {
+  id: string
+  created: string
+  updated: string
+  title: string
+  visual: string
+  tags: string[]
+}
+
+const postsDir = path.join(process.cwd(), 'src/posts')
+
+/**
+ * 記事ファイルを取得する関数
+ * ディレクトリ内にある最初に見つけた.mdファイルを記事ファイルとする
+ */
+const getPostFile = (id: string) => {
+  const postDirEntry = fs.readdirSync(path.join(postsDir, id), {
+    withFileTypes: true,
+  })
+  return postDirEntry.find((e) => e.name.substr(-3) === '.md')
+}
 
 export function getSortedPostsData() {
-  // /posts 配下のファイル名を取得する
-  const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData = fileNames.map((fileName) => {
-    // id を取得するためにファイル名から ".md" を削除する
-    const id = fileName.replace(/\.md$/, '')
+  // /posts 配下のディレクトリ、ファイル名を取得する
+  const dirEntry = fs.readdirSync(postsDir, { withFileTypes: true })
+
+  const allPostsData = dirEntry.reduce((prev: MetaData[], entry) => {
+    // ディレクトリ以外はreturn
+    if (!entry.isDirectory()) return prev
+
+    const id = entry.name
+    const postFile = getPostFile(id)
+
+    // mdファイルが無い場合return
+    if (postFile === undefined) return prev
 
     // マークダウンファイルを文字列として読み取る
-    const fullPath = path.join(postsDirectory, fileName)
+    const fullPath = path.join(postsDir, entry.name, postFile.name)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
     // 投稿のメタデータ部分を解析するために gray-matter を使う
     const matterResult = matter(fileContents)
 
     // データを id と合わせる
-    return {
-      id,
-      ...(matterResult.data as {
-        created: string
-        updated: string
-        title: string
-        visual: string
-        tags: string[]
-      }),
-    }
-  })
+    return [
+      ...prev,
+      {
+        id,
+        ...(matterResult.data as Omit<MetaData, 'id'>),
+      },
+    ]
+  }, [])
+
   // 投稿を日付でソートする
   return allPostsData.sort((a, b) => {
     if (a.created < b.created) {
@@ -43,18 +68,22 @@ export function getSortedPostsData() {
 }
 
 export function getAllPostIds() {
-  const fileNames = fs.readdirSync(postsDirectory)
-  return fileNames.map((fileName) => {
-    return {
-      params: {
-        id: fileName.replace(/\.md$/, ''),
-      },
-    }
-  })
+  const dirEntry = fs.readdirSync(postsDir, { withFileTypes: true })
+
+  const allPostIds = dirEntry.reduce((prev: string[], entry) => {
+    if (!entry.isDirectory) return prev
+
+    return [...prev, entry.name]
+  }, [])
+
+  return allPostIds
 }
 
 export async function getPostData(id: string) {
-  const fullPath = path.join(postsDirectory, `${id}.md`)
+  const postFile = getPostFile(id)
+  if (postFile === undefined) return
+
+  const fullPath = path.join(postsDir, id, postFile.name)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
 
   // 投稿のメタデータ部分を解析するために gray-matter を使う

@@ -45,9 +45,16 @@ export default function Post({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds()
+  const allPostIds = getAllPostIds()
+
   return {
-    paths,
+    paths: allPostIds.map((postId) => {
+      return {
+        params: {
+          id: postId,
+        },
+      }
+    }),
     fallback: false,
   }
 }
