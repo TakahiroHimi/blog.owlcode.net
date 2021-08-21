@@ -41,11 +41,11 @@ const Layout: VFC<Props> = ({ children }) => {
           </li>
         </ul>
         <div css={container}>{children}</div>
-        <footer>
+        <footer css={footer}>
           <nav>
             <Link href="/">
               <a css={link}>
-                <p css={toHome}>blog.thimi.io</p>
+                <span css={toHome}>blog.thimi.io</span>
               </a>
             </Link>
           </nav>
@@ -76,6 +76,12 @@ const container = css`
   max-width: 960px;
 `
 
+const footer = css`
+  padding: 18px 0px;
+  background-color: rgba(204, 204, 204, 0.2);
+  text-align: center;
+`
+
 const link = css`
   text-decoration: none;
   cursor: pointer;
@@ -83,9 +89,7 @@ const link = css`
 
 const toHome = css`
   color: ${colors.blue400};
-  text-align: center;
-  padding: 18px 0px;
+
   font-size: 18px;
   font-weight: bold;
-  background-color: rgba(204, 204, 204, 0.2);
 `
