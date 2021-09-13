@@ -1,60 +1,14 @@
-import fs from 'fs'
-import matter from 'gray-matter'
-import path from 'path'
+import { getMetaDataFromAllPosts } from 'utils/postsAnalysis'
 
-const postsDir: string = path.join(process.cwd(), 'src/posts')
-const dirents: fs.Dirent[] = fs.readdirSync(postsDir, { withFileTypes: true })
-const dirNames: string[] = dirents.flatMap((dirent) => (dirent.isDirectory() ? dirent.name : []))
+export type TagData = { tag: string; count: number }
 
-export type TagsAndCounts = { tagName: string; count: number }[]
+export const getAllTags = (): TagData[] => {
+  const allPostsTags = getMetaDataFromAllPosts('tags')
 
-export const getAllTagsAndCount = (): TagsAndCounts => {
-  const allTags: string[] = dirNames
-    .flatMap((dirName) => {
-      const fileNames = fs.readdirSync(`${postsDir}/${dirName}`)
-      return fileNames.map((fileName) => {
-        const fullPath = path.join(`${postsDir}/${dirName}`, fileName)
-        const fileContents = fs.readFileSync(fullPath, 'utf8')
-        const matterResult = matter(fileContents)
-        return matterResult.data.tags
-      })
-    })
-    .flat()
-  const tagsAndCounts = [...new Set(allTags)].reduce((acc: TagsAndCounts, currentValue: string) => {
-    const count = allTags.filter((tag) => currentValue === tag).length
-    return [
-      ...acc,
-      {
-        tagName: currentValue,
-        count,
-      },
-    ]
-  }, [] as TagsAndCounts)
+  const tagsAndCount = [...new Set(allPostsTags.flat())].reduce((prev: TagData[], tag) => {
+    const count = allPostsTags.flat().filter((value) => value === tag).length
+    return [...prev, { tag: tag, count: count }]
+  }, [])
 
-  return tagsAndCounts
-}
-
-export const getAllTags = (): { params: { tag: string } }[] => {
-  // console.log(postsDir)
-  // console.log(dirents)
-  // console.log(dirNames)
-  console.log(fs.readdirSync(postsDir))
-
-  const allTags: string[] = dirNames
-    .flatMap((dirName) => {
-      const fileNames = fs.readdirSync(`${postsDir}/${dirName}`)
-      return fileNames.map((fileName) => {
-        const fullPath = path.join(`${postsDir}/${dirName}`, fileName)
-        const fileContents = fs.readFileSync(fullPath, 'utf8')
-        const matterResult = matter(fileContents)
-        return matterResult.data.tags
-      })
-    })
-    .flat()
-  const uniqueTags = [...new Set(allTags)]
-  return uniqueTags.map((tag) => {
-    return {
-      params: { tag },
-    }
-  })
+  return tagsAndCount
 }

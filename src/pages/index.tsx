@@ -1,15 +1,14 @@
 import { css } from '@emotion/react'
 import Tag from 'components/Tag'
-import { GetStaticProps } from 'next'
+import { getAllTags, TagData } from 'lib/tags'
+import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import colors from 'styles/colors'
 import { getSortedPostsData } from '../lib/posts'
 
-export default function Home({
-  allPostsData,
-}: {
+type Props = {
   allPostsData: {
     id: string
     created: string
@@ -18,7 +17,10 @@ export default function Home({
     visual: string
     tags: string[]
   }[]
-}) {
+  allTagData: TagData[]
+}
+
+const Home: NextPage<Props> = ({ allPostsData }) => {
   return (
     <React.Fragment>
       <Head>
@@ -50,14 +52,18 @@ export default function Home({
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const allPostsData = getSortedPostsData()
+  const allTagData = getAllTags()
   return {
     props: {
       allPostsData,
+      allTagData,
     },
   }
 }
+
+export default Home
 
 const listItem = css`
   margin-bottom: 32px;
