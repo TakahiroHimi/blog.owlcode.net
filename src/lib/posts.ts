@@ -9,7 +9,7 @@ import { MetaData } from 'utils/types'
 /**
  * 全ての記事のmedaデータを取得後日付順にソートして返却する関数
  */
-export function getSortedPostsData() {
+export const getSortedPostsData = () => {
   // /posts 配下のディレクトリ、ファイル名を取得する
   const dirEntry = fs.readdirSync(postsDir, { withFileTypes: true })
 
@@ -43,7 +43,7 @@ export function getSortedPostsData() {
   })
 }
 
-export function getAllPostIds() {
+export const getAllPostIds = () => {
   const dirEntry = fs.readdirSync(postsDir, { withFileTypes: true })
 
   const allPostIds = dirEntry.reduce((prev: string[], entry) => {
@@ -58,7 +58,7 @@ export function getAllPostIds() {
 /**
  * 引数で指定されたidの記事内容をHTMLで返却する関数
  */
-export async function getPostData(id: string) {
+export const getPostData = async (id: string) => {
   const postFile = getPostFile(id)
   if (postFile === undefined) return
 
