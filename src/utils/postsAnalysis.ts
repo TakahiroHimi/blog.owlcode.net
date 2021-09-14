@@ -5,13 +5,16 @@ import { MetaData } from './types'
 
 export const postsDir = path.join(process.cwd(), 'src/posts')
 
-type MetaType = keyof MetaData
-type Return<T extends MetaType> = T extends Exclude<keyof MetaData, 'tags'> ? string[] : string[][]
+type Return<T extends keyof MetaData> = T extends Exclude<keyof MetaData, 'tags'>
+  ? string[]
+  : string[][]
 
 /**
- * 全ての記事から指定したmetaデータを取得する関数
+ * 全ての記事から指定したmetaデータを取得して返却する関数
+ * @param meta 取得するmetaデータ
+ * @returns 全記事から取得したmetaデータ
  */
-export const getMetaDataFromAllPosts = <T extends MetaType>(meta: T): Return<T> => {
+export const getMetaDataFromAllPosts = <T extends keyof MetaData>(meta: T): Return<T> => {
   const dirEntry = fs.readdirSync(postsDir, { withFileTypes: true })
 
   // idのみファイル内に記述が無いため別処理
@@ -43,17 +46,19 @@ export const getMetaDataFromAllPosts = <T extends MetaType>(meta: T): Return<T> 
 }
 
 /**
- * valueがmetaデータの内id以外のいずれかであることを保証するための型ガード
+ * valueがmetaデータのid以外のいずれかであることを保証するための型ガード関数
+ * @param value チェック対象の変数
+ * @returns 型チェック結果
  */
-const isMetaDataType = (value: unknown): value is keyof Omit<MetaData, 'id'> => {
-  return (
-    typeof value === 'string' && ['created', 'updated', 'title', 'visual', 'tags'].includes(value)
-  )
+const isMetaDataType = (value: keyof MetaData): value is keyof Omit<MetaData, 'id'> => {
+  return typeof value === 'string' && value !== 'id'
 }
 
 /**
  * 記事ファイルを取得する関数
  * ディレクトリ内にある最初に見つけた.mdファイルを記事ファイルとする
+ * @param id 取得する記事のid
+ * @returns 記事ファイル
  */
 export const getPostFile = (id: string) => {
   const postDirEntry = fs.readdirSync(path.join(postsDir, id), {
@@ -64,6 +69,8 @@ export const getPostFile = (id: string) => {
 
 /**
  * 指定したidの記事のmetaデータを返却する関数
+ * @param id metaデータを取得する記事のid
+ * @returns metaデータ
  */
 export const getMetaData = (id: string) => {
   const postFile = getPostFile(id)

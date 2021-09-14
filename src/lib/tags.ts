@@ -2,6 +2,10 @@ import { getMetaDataFromAllPosts } from 'utils/postsAnalysis'
 
 export type TagData = { tag: string; count: number }
 
+/**
+ * 全記事のタグを集計して返却する関数
+ * @returns タグ集計結果
+ */
 export const getAllTags = (): TagData[] => {
   const allPostsTags = getMetaDataFromAllPosts('tags')
 

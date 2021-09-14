@@ -7,7 +7,8 @@ import { getMetaData, getPostFile, postsDir } from 'utils/postsAnalysis'
 import { MetaData } from 'utils/types'
 
 /**
- * 全ての記事のmedaデータを取得後日付順にソートして返却する関数
+ * 全ての記事のmedaデータを日付順にソートして返却する関数
+ * @returns 全記事のmetaデータ(日付降順)
  */
 export const getSortedPostsData = () => {
   // /posts 配下のディレクトリ、ファイル名を取得する
@@ -43,6 +44,10 @@ export const getSortedPostsData = () => {
   })
 }
 
+/**
+ * 全ての記事のidを返却する関数
+ * @returns 前記事のid
+ */
 export const getAllPostIds = () => {
   const dirEntry = fs.readdirSync(postsDir, { withFileTypes: true })
 
@@ -56,7 +61,9 @@ export const getAllPostIds = () => {
 }
 
 /**
- * 引数で指定されたidの記事内容をHTMLで返却する関数
+ * 引数で指定されたidの記事情報を返却する関数
+ * @param id 記事id
+ * @returns 記事情報
  */
 export const getPostData = async (id: string) => {
   const postFile = getPostFile(id)
