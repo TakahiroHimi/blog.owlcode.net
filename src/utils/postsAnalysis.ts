@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import path from 'path'
 import { MetaData } from './types'
 
-export const postsDir = path.join(process.cwd(), 'src/posts')
+export const postsDir = path.join(process.cwd(), process.env.POSTS_DIRECTORY ?? 'src/posts')
 
 type Return<T extends keyof MetaData> = T extends Exclude<keyof MetaData, 'tags'>
   ? string[]
@@ -50,7 +50,7 @@ export const getMetaDataFromAllPosts = <T extends keyof MetaData>(meta: T): Retu
  * @param value チェック対象の変数
  * @returns 型チェック結果
  */
-const isMetaDataType = (value: keyof MetaData): value is keyof Omit<MetaData, 'id'> => {
+export const isMetaDataType = (value: keyof MetaData): value is keyof Omit<MetaData, 'id'> => {
   return typeof value === 'string' && value !== 'id'
 }
 
