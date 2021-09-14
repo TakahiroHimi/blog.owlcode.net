@@ -2,5 +2,6 @@
   "moduleNameMapper": {
     "^~/(.+)": "<rootDir>/src/$1"
   },
-  "preset": "ts-jest"
+  "preset": "ts-jest",
+  "globalSetup": "<rootDir>/src/test/setupEnv.ts"
 }

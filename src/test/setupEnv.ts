@@ -1,7 +1,8 @@
 import { loadEnvConfig } from '@next/env'
 
-export const setup = async (): Promise<void> => {
-  loadEnvConfig(process.env.PWD || process.cwd())
+const setup = async () => {
+  const projectDir = process.cwd()
+  loadEnvConfig(projectDir)
 }
 
 export default setup
