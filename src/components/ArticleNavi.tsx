@@ -15,6 +15,8 @@ const ArticleNavi: VFC<Props> = ({ tagCount, monthCount }) => {
   const router = useRouter()
   const selectTag = router.query.tag
   const selectTagCount = tagCount.find((value) => value.tag === selectTag)?.count
+  const selectMonth = router.query.month
+  const selectMonthCount = monthCount.find((value) => value.month === selectMonth)?.count
 
   return (
     <Card>
@@ -44,6 +46,18 @@ const ArticleNavi: VFC<Props> = ({ tagCount, monthCount }) => {
             return { value: month.month, label: `${month.month}(${month.count})` }
           })}
           isClearable
+          onChange={(e) => {
+            if (e === null) {
+              router.push('/')
+            } else if ('value' in e) {
+              router.push(`/month/${e.value}`)
+            }
+          }}
+          defaultValue={
+            typeof selectMonth === 'string'
+              ? { value: selectMonth, label: `${selectMonth}(${selectMonthCount})` }
+              : undefined
+          }
         />
       </div>
     </Card>

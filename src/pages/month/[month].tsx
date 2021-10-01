@@ -16,16 +16,16 @@ type Props = {
 }
 
 type Params = {
-  tag: string
+  month: string
 }
 
-const TagPage: VFC<Props> = ({ postsData, tagCount, monthCount }) => {
+const MonthPage: VFC<Props> = ({ postsData, tagCount, monthCount }) => {
   const router = useRouter()
 
   return (
     <React.Fragment>
       <Head>
-        <title>{`Tag | ${router.query.tag}`}</title>
+        <title>{`Month | ${router.query.month}`}</title>
       </Head>
       <ContentsLayout
         postsData={postsData}
@@ -35,11 +35,11 @@ const TagPage: VFC<Props> = ({ postsData, tagCount, monthCount }) => {
   )
 }
 
-export default TagPage
+export default MonthPage
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const paths = getTagCount().map((tagData) => {
-    return { params: { tag: tagData.tag } }
+  const paths = getMonthCount().map((monthData) => {
+    return { params: { month: monthData.month } }
   })
   return {
     paths,
@@ -48,8 +48,8 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async ({ params }) => {
-  const postsData = params?.tag
-    ? getSortedPostsData().filter((post) => post.tags.includes(params.tag))
+  const postsData = params?.month
+    ? getSortedPostsData().filter((post) => post.created.substring(0, 7) === params.month)
     : []
   const tagCount = getTagCount()
   const monthCount = getMonthCount()
