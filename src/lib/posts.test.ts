@@ -23,6 +23,6 @@ describe('utils/postsAnalysis/isMetaDataType', () => {
 
 describe('utils/postsAnalysis/getMetaDataFromAllPosts', () => {
   test('"created"を正しく取得できる', () => {
-    expect(getMetaDataFromAllPosts('created')).toStrictEqual(['2020-08-10', '2020-08-11'])
+    expect(getMetaDataFromAllPosts('created')).toStrictEqual(['2021-08-10', '2021-08-11'])
   })
 })

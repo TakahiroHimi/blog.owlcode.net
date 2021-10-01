@@ -1,11 +1,11 @@
 import { css } from '@emotion/react'
-import { TagData } from 'lib/tags'
+import { TagCount } from 'lib/tags'
 import React, { VFC } from 'react'
 import Card from './Card'
 import Select from './Select'
 
 type Props = {
-  allTagData: TagData[]
+  allTagData: TagCount[]
 }
 
 const ArticleNavi: VFC<Props> = ({ allTagData }) => {

@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import ArticleNavi from 'components/ArticleNavi'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import Tag from 'components/Tag'
-import { getAllTags, TagData } from 'lib/tags'
+import { getAllTags, TagCount } from 'lib/tags'
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -19,7 +19,7 @@ type Props = {
     visual: string
     tags: string[]
   }[]
-  allTagData: TagData[]
+  allTagData: TagCount[]
 }
 
 const Home: NextPage<Props> = ({ allPostsData, allTagData }) => {
