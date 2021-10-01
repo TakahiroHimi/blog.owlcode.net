@@ -1,48 +1,65 @@
-import { getAllTags } from 'lib/tags'
+import ArticleNavi from 'components/ArticleNavi'
+import ContentsLayout from 'components/layouts/ContentsLayout'
+import { getMonthCount, MonthCount } from 'lib/date'
+import { getSortedPostsData } from 'lib/posts'
+import { getTagCount, TagCount } from 'lib/tags'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
-import React from 'react'
+import React, { VFC } from 'react'
+import { MetaData } from 'utils/types'
 
-export default function Post({
-  tag,
-  posts,
-}: {
+type Props = {
+  postsData: MetaData[]
+  tagCount: TagCount[]
+  monthCount: MonthCount[]
+}
+
+type Params = {
   tag: string
-  posts: {
-    id: string
-    contentHtml: string
-    title: string
-    date: string
-    tags: string[]
-  }[]
-}) {
+}
+
+const TagPage: VFC<Props> = ({ postsData, tagCount, monthCount }) => {
+  const router = useRouter()
+
+  console.log(router)
+
   return (
     <React.Fragment>
       <Head>
-        <title>{tag}</title>
+        <title>{`Tag | ${router.query.tag}`}</title>
       </Head>
-      {posts.length}
+      <ContentsLayout
+        postsData={postsData}
+        asideCards={<ArticleNavi tagCount={tagCount} monthCount={monthCount} />}
+      />
     </React.Fragment>
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllTags()
+export default TagPage
+
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
+  const paths = getTagCount().map((tagData) => {
+    return { params: { tag: tagData.tag } }
+  })
   return {
     paths,
     fallback: false,
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log(!!params)
+export const getStaticProps: GetStaticProps<Props, Params> = async ({ params }) => {
+  const postsData = params?.tag
+    ? getSortedPostsData().filter((post) => post.tags.includes(params.tag))
+    : []
+  const tagCount = getTagCount()
+  const monthCount = getMonthCount()
   return {
     props: {
-      tag: 'test',
-      posts: {
-        id: 1,
-        title: 'サンプル記事',
-      },
+      postsData,
+      tagCount,
+      monthCount,
     },
   }
 }
