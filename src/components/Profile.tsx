@@ -1,13 +1,13 @@
 import { css } from '@emotion/react'
 import Image from 'next/image'
-import React, { FC } from 'react'
+import React, { VFC } from 'react'
 import Card from './Card'
 import GitHubLinkIcon from './LinkIcons/GitHubLinkIcon'
 import TwitterLinkIcon from './LinkIcons/TwitterLinkIcon'
 import ZennLinkIcon from './LinkIcons/ZennLinkIcon'
 import profileIcon from './Profile.icon.jpg'
 
-const Profile: FC = () => {
+const Profile: VFC = () => {
   return (
     <Card>
       <div css={container}>
