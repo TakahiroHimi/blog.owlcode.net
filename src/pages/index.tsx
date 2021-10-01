@@ -22,13 +22,13 @@ type Props = {
   allTagData: TagData[]
 }
 
-const Home: NextPage<Props> = ({ allPostsData }) => {
+const Home: NextPage<Props> = ({ allPostsData, allTagData }) => {
   return (
     <React.Fragment>
       <Head>
         <title>blog.thimi.io</title>
       </Head>
-      <ContentsLayout asideCards={<ArticleNavi />}>
+      <ContentsLayout asideCards={<ArticleNavi allTagData={allTagData} />}>
         <section>
           <ul>
             {allPostsData.map(({ id, created, title, tags }) => (

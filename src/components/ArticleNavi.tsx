@@ -1,19 +1,22 @@
 import { css } from '@emotion/react'
+import { TagData } from 'lib/tags'
 import React, { VFC } from 'react'
 import Card from './Card'
 import Select from './Select'
 
-const ArticleNavi: VFC = () => {
+type Props = {
+  allTagData: TagData[]
+}
+
+const ArticleNavi: VFC<Props> = ({ allTagData }) => {
   return (
     <Card>
       <div css={container}>
         <Select
           placeholder="Tag"
-          options={[
-            { value: '0', label: 'React(15)' },
-            { value: '1', label: 'Next.js(10)' },
-            { value: '2', label: 'TypeScript(20)' },
-          ]}
+          options={allTagData.map((tag) => {
+            return { value: tag.tag, label: `${tag.tag}(${tag.count})` }
+          })}
           isClearable
         ></Select>
         <Select
