@@ -12,15 +12,15 @@ export const getMonthCount = (): MonthCount[] => {
   const dateAndCount = allPostsDate.reduce((prev: MonthCount[], post) => {
     const month = post.substring(0, 7)
     if (prev.find((value) => value.month === month)) return [...prev]
-    const count = allPostsDate.filter((post) => post.substring(0, 7)).length
+    const count = allPostsDate.filter((post) => post.substring(0, 7) === month).length
     return [...prev, { month: month, count: count }]
   }, [])
 
   return dateAndCount.sort((a, b) => {
     if (a.month < b.month) {
-      return -1
-    } else {
       return 1
+    } else {
+      return -1
     }
   })
 }
