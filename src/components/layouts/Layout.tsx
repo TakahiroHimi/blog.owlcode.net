@@ -16,7 +16,7 @@ const Layout: VFC<Props> = ({ children }) => {
 
         <div css={contentsContainer}>
           <div css={childrenWrapper}>{children}</div>
-          <aside>
+          <aside css={asideContainer}>
             <Profile />
           </aside>
         </div>
@@ -46,4 +46,9 @@ const contentsContainer = css`
 
 const childrenWrapper = css`
   width: 100%;
+`
+
+const asideContainer = css`
+  width: 300px;
+  flex-shrink: 0;
 `

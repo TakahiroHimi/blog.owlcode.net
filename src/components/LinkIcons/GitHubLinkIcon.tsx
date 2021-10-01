@@ -10,7 +10,7 @@ type Props = {
 const GitHubLinkIcon: VFC<Props> = ({ css }) => {
   return (
     <a href={'https://github.com/TakahiroHimi'} target="_blank" rel="noreferrer" css={css}>
-      <Image src={icon} alt="GitHubロゴ画像" objectFit="contain" height={30} width={30} />
+      <Image src={icon} alt="GitHubロゴ画像" objectFit="contain" height={24} width={24} />
     </a>
   )
 }

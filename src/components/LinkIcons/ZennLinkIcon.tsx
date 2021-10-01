@@ -10,7 +10,7 @@ type Props = {
 const ZennLinkIcon: VFC<Props> = ({ css }) => {
   return (
     <a href={'https://zenn.dev/thim'} target="_blank" rel="noreferrer" css={css}>
-      <Image src={icon} alt="zennロゴ画像" objectFit="contain" height={30} width={30} />
+      <Image src={icon} alt="zennロゴ画像" objectFit="contain" height={24} width={24} />
     </a>
   )
 }

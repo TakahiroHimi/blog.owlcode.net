@@ -10,7 +10,7 @@ type Props = {
 const TwitterLinkIcon: VFC<Props> = ({ css }) => {
   return (
     <a href={'https://twitter.com/thim_tec'} target="_blank" rel="noreferrer" css={css}>
-      <Image src={icon} alt="twitterロゴ画像" objectFit="contain" height={30} width={30} />
+      <Image src={icon} alt="twitterロゴ画像" objectFit="contain" height={24} width={24} />
     </a>
   )
 }
