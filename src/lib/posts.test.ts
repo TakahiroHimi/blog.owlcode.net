@@ -1,4 +1,4 @@
-import { getMetaDataFromAllPosts, isMetaDataType } from './postsAnalysis'
+import { getMetaDataFromAllPosts, isMetaDataType } from './posts'
 
 describe('utils/postsAnalysis/isMetaDataType', () => {
   test('"created"はMetaDataと判定される', () => {

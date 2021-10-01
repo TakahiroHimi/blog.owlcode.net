@@ -1,4 +1,4 @@
-import { getMetaDataFromAllPosts } from 'utils/postsAnalysis'
+import { getMetaDataFromAllPosts } from './posts'
 
 export type TagData = { tag: string; count: number }
 
