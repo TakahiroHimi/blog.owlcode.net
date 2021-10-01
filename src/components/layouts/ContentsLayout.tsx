@@ -23,9 +23,9 @@ export default ContentsLayout
 
 const wrapper = css`
   display: flex;
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0px auto;
-  padding: 32px 0px 32px;
+  padding: 32px;
 `
 
 const asideContainer = css`

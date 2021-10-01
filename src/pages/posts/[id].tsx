@@ -25,23 +25,25 @@ export default function Post({
         <title>{postData.title}</title>
       </Head>
       <ContentsLayout>
-        <article>
-          <p css={date}>{postData.created}</p>
-          <h1 css={title}>{postData.title}</h1>
-          <div css={article} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-        </article>
-        <aside css={shareButtons}>
-          <TwitterShareButton
-            url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
-            title={postData.title}
-            via={process.env.NEXT_PUBLIC_TWITTER_ID}
-          >
-            <TwitterIcon round size={50} />
-          </TwitterShareButton>
-          <FacebookShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
-            <FacebookIcon round size={50} />
-          </FacebookShareButton>
-        </aside>
+        <div css={container}>
+          <article>
+            <p css={date}>{postData.created}</p>
+            <h1 css={title}>{postData.title}</h1>
+            <div css={article} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          </article>
+          <aside css={shareButtons}>
+            <TwitterShareButton
+              url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
+              title={postData.title}
+              via={process.env.NEXT_PUBLIC_TWITTER_ID}
+            >
+              <TwitterIcon round size={50} />
+            </TwitterShareButton>
+            <FacebookShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
+              <FacebookIcon round size={50} />
+            </FacebookShareButton>
+          </aside>
+        </div>
       </ContentsLayout>
     </React.Fragment>
   )
@@ -71,6 +73,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   }
 }
+
+const container = css`
+  width: 100%;
+  padding-right: 28px;
+`
 
 const date = css`
   font-size: 1rem;
