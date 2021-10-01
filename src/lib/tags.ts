@@ -14,5 +14,11 @@ export const getTagCount = (): TagCount[] => {
     return [...prev, { tag: tag, count: count }]
   }, [])
 
-  return tagsAndCount
+  return tagsAndCount.sort((a, b) => {
+    if (a.count < b.count) {
+      return 1
+    } else {
+      return -1
+    }
+  })
 }

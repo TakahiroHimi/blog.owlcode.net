@@ -16,5 +16,11 @@ export const getMonthCount = (): MonthCount[] => {
     return [...prev, { month: month, count: count }]
   }, [])
 
-  return dateAndCount
+  return dateAndCount.sort((a, b) => {
+    if (a.month < b.month) {
+      return -1
+    } else {
+      return 1
+    }
+  })
 }
