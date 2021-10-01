@@ -1,4 +1,6 @@
 import { css } from '@emotion/react'
+import ArticleNavi from 'components/ArticleNavi'
+import ContentsLayout from 'components/layouts/ContentsLayout'
 import Tag from 'components/Tag'
 import { getAllTags, TagData } from 'lib/tags'
 import { GetStaticProps, NextPage } from 'next'
@@ -26,28 +28,29 @@ const Home: NextPage<Props> = ({ allPostsData }) => {
       <Head>
         <title>blog.thimi.io</title>
       </Head>
-      <section>
-        <ul>
-          {allPostsData.map(({ id, created, title, tags }) => (
-            <li key={id} css={listItem}>
-              <p css={createdAt}>{created}</p>
-              <Link href={`/posts/${id}`}>
-                <a css={titleText}>{title}</a>
-              </Link>
-              <div css={tagsContainer}>
-                {tags.map((tag) => (
-                  <Link key={tag} href={`/tags/${tag}`}>
-                    <a css={link}>
-                      <Tag tag={tag} />
-                    </a>
-                  </Link>
-                ))}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <nav></nav>
+      <ContentsLayout asideCards={<ArticleNavi />}>
+        <section>
+          <ul>
+            {allPostsData.map(({ id, created, title, tags }) => (
+              <li key={id} css={listItem}>
+                <p css={createdAt}>{created}</p>
+                <Link href={`/posts/${id}`}>
+                  <a css={titleText}>{title}</a>
+                </Link>
+                <div css={tagsContainer}>
+                  {tags.map((tag) => (
+                    <Link key={tag} href={`/tags/${tag}`}>
+                      <a css={link}>
+                        <Tag tag={tag} />
+                      </a>
+                    </Link>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </ContentsLayout>
     </React.Fragment>
   )
 }
