@@ -42,31 +42,3 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 }
 
 export default Home
-
-// const listItem = css`
-//   margin-bottom: 32px;
-// `
-
-// const createdAt = css`
-//   font-size: 1rem;
-//   color: ${colors.gray200};
-//   margin-bottom: 8px;
-// `
-
-// const titleText = css`
-//   font-size: 1.7rem;
-//   color: ${colors.blue400};
-//   text-decoration: none;
-//   cursor: pointer;
-// `
-
-// const tagsContainer = css`
-//   margin-top: 8px;
-//   display: flex;
-//   gap: 8px;
-// `
-
-// const link = css`
-//   text-decoration: none;
-//   cursor: pointer;
-// `
