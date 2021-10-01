@@ -2,7 +2,8 @@ import { css } from '@emotion/react'
 import ArticleNavi from 'components/ArticleNavi'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import Tag from 'components/Tag'
-import { getAllTags, TagCount } from 'lib/tags'
+import { getMonthCount, MonthCount } from 'lib/date'
+import { getTagCount, TagCount } from 'lib/tags'
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -19,16 +20,17 @@ type Props = {
     visual: string
     tags: string[]
   }[]
-  allTagData: TagCount[]
+  tagCount: TagCount[]
+  monthCount: MonthCount[]
 }
 
-const Home: NextPage<Props> = ({ allPostsData, allTagData }) => {
+const Home: NextPage<Props> = ({ allPostsData, tagCount, monthCount }) => {
   return (
     <React.Fragment>
       <Head>
         <title>blog.thimi.io</title>
       </Head>
-      <ContentsLayout asideCards={<ArticleNavi allTagData={allTagData} />}>
+      <ContentsLayout asideCards={<ArticleNavi tagCount={tagCount} monthCount={monthCount} />}>
         <section>
           <ul>
             {allPostsData.map(({ id, created, title, tags }) => (
@@ -57,11 +59,13 @@ const Home: NextPage<Props> = ({ allPostsData, allTagData }) => {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const allPostsData = getSortedPostsData()
-  const allTagData = getAllTags()
+  const tagCount = getTagCount()
+  const monthCount = getMonthCount()
   return {
     props: {
       allPostsData,
-      allTagData,
+      tagCount,
+      monthCount,
     },
   }
 }

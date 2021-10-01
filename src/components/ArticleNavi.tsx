@@ -1,31 +1,31 @@
 import { css } from '@emotion/react'
+import { MonthCount } from 'lib/date'
 import { TagCount } from 'lib/tags'
 import React, { VFC } from 'react'
 import Card from './Card'
 import Select from './Select'
 
 type Props = {
-  allTagData: TagCount[]
+  tagCount: TagCount[]
+  monthCount: MonthCount[]
 }
 
-const ArticleNavi: VFC<Props> = ({ allTagData }) => {
+const ArticleNavi: VFC<Props> = ({ tagCount, monthCount }) => {
   return (
     <Card>
       <div css={container}>
         <Select
           placeholder="Tag"
-          options={allTagData.map((tag) => {
+          options={tagCount.map((tag) => {
             return { value: tag.tag, label: `${tag.tag}(${tag.count})` }
           })}
           isClearable
         ></Select>
         <Select
           placeholder="Date"
-          options={[
-            { value: '0', label: '2021/10(15)' },
-            { value: '1', label: '2021/09(10)' },
-            { value: '2', label: '2021/08(20)' },
-          ]}
+          options={monthCount.map((month) => {
+            return { value: month.month, label: `${month.month}(${month.count})` }
+          })}
           isClearable
         ></Select>
       </div>

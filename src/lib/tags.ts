@@ -6,7 +6,7 @@ export type TagCount = { tag: string; count: number }
  * 全記事のタグを集計して返却する関数
  * @returns タグ集計結果
  */
-export const getAllTags = (): TagCount[] => {
+export const getTagCount = (): TagCount[] => {
   const allPostsTags = getMetaDataFromAllPosts('tags')
 
   const tagsAndCount = [...new Set(allPostsTags.flat())].reduce((prev: TagCount[], tag) => {
