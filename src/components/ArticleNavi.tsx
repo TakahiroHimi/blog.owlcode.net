@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 import { MonthCount } from 'lib/date'
 import { TagCount } from 'lib/tags'
+import { useRouter } from 'next/dist/client/router'
 import React, { VFC } from 'react'
 import Card from './Card'
 import Select from './Select'
@@ -11,6 +12,10 @@ type Props = {
 }
 
 const ArticleNavi: VFC<Props> = ({ tagCount, monthCount }) => {
+  const router = useRouter()
+  const selectTag = router.query.tag
+  const selectTagCount = tagCount.find((value) => value.tag === selectTag)?.count
+
   return (
     <Card>
       <div css={container}>
@@ -20,14 +25,26 @@ const ArticleNavi: VFC<Props> = ({ tagCount, monthCount }) => {
             return { value: tag.tag, label: `${tag.tag}(${tag.count})` }
           })}
           isClearable
-        ></Select>
+          onChange={(e) => {
+            if (e === null) {
+              router.push('/')
+            } else if ('value' in e) {
+              router.push(`/tags/${e.value}`)
+            }
+          }}
+          defaultValue={
+            typeof selectTag === 'string'
+              ? { value: selectTag, label: `${selectTag}(${selectTagCount})` }
+              : undefined
+          }
+        />
         <Select
           placeholder="Date"
           options={monthCount.map((month) => {
             return { value: month.month, label: `${month.month}(${month.count})` }
           })}
           isClearable
-        ></Select>
+        />
       </div>
     </Card>
   )
