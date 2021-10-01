@@ -80,11 +80,10 @@ const titleText = css`
   color: ${colors.blue400};
   text-decoration: none;
   cursor: pointer;
-  display: block;
-  margin-bottom: 8px;
 `
 
 const tagsContainer = css`
+  margin-top: 8px;
   display: flex;
   gap: 8px;
 `
