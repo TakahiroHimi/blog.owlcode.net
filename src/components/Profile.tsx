@@ -24,7 +24,7 @@ const Profile: VFC = () => {
         </div>
 
         <p css={desc}>
-          札幌在住のフロントエンドエンジニア。キャンプが好きです。ReactとNext.jsも好きです。
+          札幌在住のフロントエンドエンジニア。キャンプが好き。TypeScript, React, Next.jsも好き。
         </p>
       </div>
     </Card>

@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+import ArticleNavi from 'components/ArticleNavi'
 import Profile from 'components/Profile'
 import React, { ReactNode, VFC } from 'react'
 import Footer from './Footer'
@@ -18,6 +19,7 @@ const Layout: VFC<Props> = ({ children }) => {
           <div css={childrenWrapper}>{children}</div>
           <aside css={asideContainer}>
             <Profile />
+            <ArticleNavi />
           </aside>
         </div>
 
@@ -51,4 +53,7 @@ const childrenWrapper = css`
 const asideContainer = css`
   width: 300px;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `

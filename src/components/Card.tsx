@@ -15,7 +15,7 @@ export default Card
 const wrapper = css`
   background-color: ${colors.white};
   padding: 20px;
-  box-shadow: 2px 2px 2px #cccccccc;
+  box-shadow: 1px 2px 2px #cccccccc;
   width: 100%;
   box-sizing: border-box;
 `
