@@ -25,3 +25,8 @@ tags: ['test', 'test2', 'tset3']
 ##### サンプル記事 h5
 
 サンプル
+
+```ts
+const hoge = 'hoge'
+console.log(hoge)
+```

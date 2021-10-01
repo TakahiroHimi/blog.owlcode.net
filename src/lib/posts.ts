@@ -1,8 +1,6 @@
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
-import remark from 'remark'
-import html from 'remark-html'
 import { MetaData } from 'utils/types'
 
 const postsDir = path.join(process.cwd(), process.env.POSTS_DIRECTORY ?? 'src/posts')
@@ -159,14 +157,10 @@ export const getPostData = async (id: string) => {
   // 投稿のメタデータ部分を解析するために gray-matter を使う
   const matterResult = matter(fileContents)
 
-  // remarkを使ってマークダウンをHTMLに変換する
-  const processedContent = await remark().use(html).process(matterResult.content)
-  const contentHtml = processedContent.toString()
-
   // データを id と組み合わせる
   return {
     id,
-    contentHtml,
-    ...(matterResult.data as { date: string; title: string }),
+    contentHtml: fileContents,
+    ...(matterResult.data as { created: string; title: string }),
   }
 }
