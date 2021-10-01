@@ -1,3 +1,4 @@
+import ArticleList from 'components/ArticleList'
 import ArticleNavi from 'components/ArticleNavi'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import { getMonthCount, MonthCount } from 'lib/date'
@@ -27,10 +28,9 @@ const MonthPage: VFC<Props> = ({ postsData, tagCount, monthCount }) => {
       <Head>
         <title>{`Month | ${router.query.month}`}</title>
       </Head>
-      <ContentsLayout
-        postsData={postsData}
-        asideCards={<ArticleNavi tagCount={tagCount} monthCount={monthCount} />}
-      />
+      <ContentsLayout asideCards={<ArticleNavi tagCount={tagCount} monthCount={monthCount} />}>
+        <ArticleList postsData={postsData} />
+      </ContentsLayout>
     </React.Fragment>
   )
 }

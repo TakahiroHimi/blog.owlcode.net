@@ -1,3 +1,4 @@
+import ArticleList from 'components/ArticleList'
 import ArticleNavi from 'components/ArticleNavi'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import { getMonthCount, MonthCount } from 'lib/date'
@@ -20,10 +21,9 @@ const Home: NextPage<Props> = ({ allPostsData, tagCount, monthCount }) => {
       <Head>
         <title>blog.thimi.io</title>
       </Head>
-      <ContentsLayout
-        postsData={allPostsData}
-        asideCards={<ArticleNavi tagCount={tagCount} monthCount={monthCount} />}
-      />
+      <ContentsLayout asideCards={<ArticleNavi tagCount={tagCount} monthCount={monthCount} />}>
+        <ArticleList postsData={allPostsData} />
+      </ContentsLayout>
     </React.Fragment>
   )
 }
