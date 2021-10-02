@@ -28,9 +28,9 @@ const Post: VFC<Props> = ({ title, created, contentHtml }) => {
       </Head>
       <ContentsLayout>
         <div css={container}>
+          <p css={date}>{created}</p>
+          <h1 css={articleTitle}>{title}</h1>
           <article className="markdown-body">
-            <p css={date}>{created}</p>
-            <h1 css={articleTitle}>{title}</h1>
             <ReactMarkdown
               children={contentHtml}
               components={{
@@ -93,14 +93,13 @@ const container = css`
 const date = css`
   font-size: 1rem;
   color: ${colors.gray200};
-  margin-bottom: 8px;
 `
 
 const articleTitle = css`
   font-size: 2.5rem;
   font-weight: bold;
   color: ${colors.blue400};
-  margin-bottom: 64px;
+  margin: 16px 0px 48px;
 `
 
 const shareButtons = css`

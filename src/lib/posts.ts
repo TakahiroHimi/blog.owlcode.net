@@ -157,10 +157,9 @@ export const getPostData = async (id: string) => {
   // 投稿のメタデータ部分を解析するために gray-matter を使う
   const matterResult = matter(fileContents)
 
-  // データを id と組み合わせる
   return {
     id,
-    contentHtml: fileContents,
+    contentHtml: fileContents.replace(/---.*---/s, ''),
     ...(matterResult.data as { created: string; title: string }),
   }
 }
