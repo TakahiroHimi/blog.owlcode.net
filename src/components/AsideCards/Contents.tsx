@@ -39,13 +39,15 @@ const h2 = css`
   text-decoration: none;
   color: ${colors.black};
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-top: 8px;
 `
 
 const h3 = css`
   text-decoration: none;
   color: ${colors.black};
+  font-size: 0.9rem;
+  margin-top: 4px;
 `
 
 const container = css`
@@ -57,6 +59,6 @@ const container = css`
 
 const title = css`
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   font-size: 1.2rem;
 `

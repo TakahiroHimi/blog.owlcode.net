@@ -12,7 +12,7 @@ const Profile: VFC = () => {
     <Card>
       <div css={container}>
         <div css={profileInfoContainer}>
-          <Image src={profileIcon} alt="プロフィール画像" width={60} height={60} />
+          <Image src={profileIcon} alt="プロフィール画像" width={60} height={60} css={image} />
           <div>
             <p css={name}>Taka</p>
             <div css={iconsContainer}>
@@ -40,6 +40,10 @@ const container = css`
 const profileInfoContainer = css`
   display: flex;
   gap: 12px;
+`
+
+const image = css`
+  border-radius: 2px;
 `
 
 const iconsContainer = css`
