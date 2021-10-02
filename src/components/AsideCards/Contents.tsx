@@ -37,21 +37,27 @@ export default Contents
 
 const h2 = css`
   text-decoration: none;
-  color: ${colors.black};
+  color: ${colors.black50};
   font-weight: 600;
   font-size: 1rem;
   margin-top: 8px;
-  width: fit-content;
   text-indent: 8px;
+
+  &:hover {
+    color: ${colors.black80};
+  }
 `
 
 const h3 = css`
   text-decoration: none;
-  color: ${colors.black};
+  color: ${colors.black50};
   font-size: 0.9rem;
   margin-top: 4px;
-  width: fit-content;
   text-indent: 16px;
+
+  &:hover {
+    color: ${colors.black80};
+  }
 `
 
 const container = css`
