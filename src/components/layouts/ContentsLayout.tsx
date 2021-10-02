@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import Profile from 'components/Profile'
+import Profile from 'components/AsideCards/Profile'
 import React, { ReactNode, VFC } from 'react'
 
 type Props = {

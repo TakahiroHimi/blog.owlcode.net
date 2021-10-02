@@ -1,10 +1,10 @@
 import { css } from '@emotion/react'
+import Card from 'components/Card'
+import GitHubLinkIcon from 'components/LinkIcons/GitHubLinkIcon'
+import TwitterLinkIcon from 'components/LinkIcons/TwitterLinkIcon'
+import ZennLinkIcon from 'components/LinkIcons/ZennLinkIcon'
 import Image from 'next/image'
 import React, { VFC } from 'react'
-import Card from './Card'
-import GitHubLinkIcon from './LinkIcons/GitHubLinkIcon'
-import TwitterLinkIcon from './LinkIcons/TwitterLinkIcon'
-import ZennLinkIcon from './LinkIcons/ZennLinkIcon'
 import profileIcon from './Profile.icon.jpg'
 
 const Profile: VFC = () => {

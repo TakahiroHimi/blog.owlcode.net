@@ -3,8 +3,8 @@ import { MonthCount } from 'lib/date'
 import { TagCount } from 'lib/tags'
 import { useRouter } from 'next/dist/client/router'
 import React, { VFC } from 'react'
-import Card from './Card'
-import Select from './Select'
+import Card from '../Card'
+import Select from '../Select'
 
 type Props = {
   tagCount: TagCount[]

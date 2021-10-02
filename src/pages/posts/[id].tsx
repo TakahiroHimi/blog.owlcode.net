@@ -1,6 +1,6 @@
 /* eslint-disable react/no-children-prop */
 import { css } from '@emotion/react'
-import Contents from 'components/Contents'
+import Contents from 'components/AsideCards/Contents'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import CodeBlock from 'components/md/CodeBlock'
 import 'github-markdown-css'

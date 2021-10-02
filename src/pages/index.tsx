@@ -1,5 +1,5 @@
 import ArticleList from 'components/ArticleList'
-import ArticleNavi from 'components/ArticleNavi'
+import ArticleNavi from 'components/AsideCards/ArticleNavi'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import { getMonthCount, MonthCount } from 'lib/date'
 import { getTagCount, TagCount } from 'lib/tags'

@@ -4,7 +4,7 @@ import React, { VFC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { HeadingComponent } from 'react-markdown/src/ast-to-react'
 import colors from 'styles/colors'
-import Card from './Card'
+import Card from '../Card'
 
 type Props = {
   mdBody: string
