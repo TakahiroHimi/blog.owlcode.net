@@ -35,30 +35,33 @@ const Contents: VFC<Props> = ({ mdBody }) => {
 
 export default Contents
 
-const h2 = css`
+const headingBase = css`
   text-decoration: none;
   color: ${colors.black50};
-  font-weight: 600;
-  font-size: 1rem;
-  margin-top: 8px;
-  text-indent: 8px;
 
   &:hover {
     color: ${colors.black80};
   }
 `
 
-const h3 = css`
-  text-decoration: none;
-  color: ${colors.black50};
-  font-size: 0.9rem;
-  margin-top: 4px;
-  text-indent: 16px;
+const h2 = css(
+  headingBase,
+  css`
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 8px;
+    text-indent: 8px;
+  `
+)
 
-  &:hover {
-    color: ${colors.black80};
-  }
-`
+const h3 = css(
+  headingBase,
+  css`
+    font-size: 0.9rem;
+    margin-top: 4px;
+    text-indent: 16px;
+  `
+)
 
 const container = css`
   width: 100%;
