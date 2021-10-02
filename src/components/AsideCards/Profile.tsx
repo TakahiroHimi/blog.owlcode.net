@@ -53,7 +53,7 @@ const iconsContainer = css`
 `
 
 const name = css`
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin-top: 8px;
 `
