@@ -54,6 +54,11 @@ const iconBase = css`
   justify-content: center;
   align-items: center;
   width: 100px;
+  transition: opacity 0.1s;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `
 
 const twitterIconWrapper = css(

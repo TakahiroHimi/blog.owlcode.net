@@ -33,4 +33,10 @@ const wrapper = css`
   box-shadow: 1px 1px 1px #cccccccc;
   box-sizing: border-box;
   cursor: pointer;
+
+  transition: opacity 0.1s;
+
+  &:hover {
+    opacity: 0.7;
+  }
 `
