@@ -5,7 +5,7 @@ import colors from 'styles/colors'
 
 const Footer: VFC = () => {
   return (
-    <footer css={footer}>
+    <footer>
       <nav>
         <Link href="/">
           <a css={link}>
@@ -19,7 +19,9 @@ const Footer: VFC = () => {
 
 export default Footer
 
-const footer = css`
+const link = css`
+  text-decoration: none;
+  cursor: pointer;
   height: 54px;
   width: 100%;
   box-sizing: border-box;
@@ -28,11 +30,6 @@ const footer = css`
   text-align: center;
   position: absolute;
   bottom: 0px;
-`
-
-const link = css`
-  text-decoration: none;
-  cursor: pointer;
 `
 
 const toHome = css`
