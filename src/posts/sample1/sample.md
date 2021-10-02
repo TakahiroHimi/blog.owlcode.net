@@ -3,7 +3,7 @@ created: '2020-08-07'
 updated: ''
 title: サンプル記事
 visual: ''
-tags: ['test', 'test2', 'tset3']
+tags: ['test', 'test2', 'tset3', 'hoge', 'fuga', 'foo', 'bar', 'baz']
 ---
 
 # サンプル記事 h1

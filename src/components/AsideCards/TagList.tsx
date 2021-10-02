@@ -38,5 +38,5 @@ const title = css`
 const tagsContainer = css`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 8px 8px;
 `
