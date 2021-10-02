@@ -11,7 +11,11 @@ type Props = {
 }
 
 const ankerLink: HeadingComponent = ({ node, ...props }) => {
-  return <a href={'#' + node.position?.start.line.toString()}>{props.children}</a>
+  return (
+    <a href={'#' + node.position?.start.line.toString()} css={node.tagName === 'h2' ? h2 : h3}>
+      {props.children}
+    </a>
+  )
 }
 
 const Contents: VFC<Props> = ({ mdBody }) => {
@@ -19,7 +23,11 @@ const Contents: VFC<Props> = ({ mdBody }) => {
     <Card>
       <div css={container}>
         <p css={title}>目次</p>
-        <ReactMarkdown children={mdBody} allowedElements={['h2']} components={{ h2: ankerLink }} />
+        <ReactMarkdown
+          children={mdBody}
+          allowedElements={['h2', 'h3']}
+          components={{ h2: ankerLink, h3: ankerLink }}
+        />
       </div>
     </Card>
   )
@@ -27,17 +35,24 @@ const Contents: VFC<Props> = ({ mdBody }) => {
 
 export default Contents
 
+const h2 = css`
+  text-decoration: none;
+  color: ${colors.black};
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 8px;
+`
+
+const h3 = css`
+  text-decoration: none;
+  color: ${colors.black};
+`
+
 const container = css`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  a {
-    text-decoration: none;
-    color: ${colors.black};
-    font-weight: 600;
-  }
 `
 
 const title = css`

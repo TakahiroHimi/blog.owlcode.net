@@ -24,6 +24,10 @@ const h2: HeadingComponent = ({ node, ...props }) => {
   return <h2 id={node.position?.start.line.toString()}>{props.children}</h2>
 }
 
+const h3: HeadingComponent = ({ node, ...props }) => {
+  return <h3 id={node.position?.start.line.toString()}>{props.children}</h3>
+}
+
 const Post: VFC<Props> = ({ title, created, mdBody }) => {
   const router = useRouter()
 
@@ -41,6 +45,7 @@ const Post: VFC<Props> = ({ title, created, mdBody }) => {
               children={mdBody}
               components={{
                 h2: h2,
+                h3: h3,
                 code: CodeBlock,
               }}
             />
