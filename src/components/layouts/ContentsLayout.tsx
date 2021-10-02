@@ -5,13 +5,14 @@ import React, { ReactNode, VFC } from 'react'
 type Props = {
   children: ReactNode
   asideCards?: ReactNode
+  sticky?: boolean
 }
 
-const ContentsLayout: VFC<Props> = ({ children, asideCards }) => {
+const ContentsLayout: VFC<Props> = ({ children, asideCards, sticky = false }) => {
   return (
     <div css={wrapper}>
-      {children}
-      <aside css={asideContainer}>
+      <div css={childrenWrapper}>{children}</div>
+      <aside css={sticky ? stickyContainer : asideContainer}>
         <Profile />
         {asideCards}
       </aside>
@@ -23,9 +24,16 @@ export default ContentsLayout
 
 const wrapper = css`
   display: flex;
+  justify-content: space-between;
   max-width: 1200px;
   margin: 0px auto;
   padding: 32px;
+  position: relative;
+`
+
+const childrenWrapper = css`
+  width: 100%;
+  max-width: 780px;
 `
 
 const asideContainer = css`
@@ -35,3 +43,12 @@ const asideContainer = css`
   flex-direction: column;
   gap: 16px;
 `
+
+const stickyContainer = css(
+  asideContainer,
+  css`
+    position: sticky;
+    top: 30px;
+    max-height: calc(100vh - 120px);
+  `
+)

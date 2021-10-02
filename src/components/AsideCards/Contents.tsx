@@ -20,7 +20,7 @@ const ankerLink: HeadingComponent = ({ node, ...props }) => {
 
 const Contents: VFC<Props> = ({ mdBody }) => {
   return (
-    <Card>
+    <Card overflow>
       <div css={container}>
         <p css={title}>目次</p>
         <ReactMarkdown
@@ -41,6 +41,8 @@ const h2 = css`
   font-weight: 600;
   font-size: 1rem;
   margin-top: 8px;
+  width: fit-content;
+  text-indent: 8px;
 `
 
 const h3 = css`
@@ -48,6 +50,8 @@ const h3 = css`
   color: ${colors.black};
   font-size: 0.9rem;
   margin-top: 4px;
+  width: fit-content;
+  text-indent: 16px;
 `
 
 const container = css`

@@ -43,6 +43,7 @@ const Post: VFC<Props> = ({ title, created, tags, mdBody }) => {
             <Contents mdBody={mdBody} />
           </>
         }
+        sticky
       >
         <div css={container}>
           <h1 css={articleTitle}>{title}</h1>

@@ -4,10 +4,11 @@ import colors from 'styles/colors'
 
 type Props = {
   children: ReactNode
+  overflow?: boolean
 }
 
-const Card: VFC<Props> = ({ children }) => {
-  return <div css={wrapper}>{children}</div>
+const Card: VFC<Props> = ({ children, overflow = false }) => {
+  return <div css={overflow ? overflowWrapper : wrapper}>{children}</div>
 }
 
 export default Card
@@ -20,3 +21,10 @@ const wrapper = css`
   box-sizing: border-box;
   border-radius: 2px;
 `
+
+const overflowWrapper = css(
+  wrapper,
+  css`
+    overflow: auto;
+  `
+)
