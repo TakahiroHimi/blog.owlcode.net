@@ -1,6 +1,6 @@
 ---
 created: '2020-08-07'
-updated: ''
+updated: '2020-09-01'
 title: サンプル記事
 visual: ''
 tags: ['test', 'test2', 'tset3', 'hoge', 'fuga', 'foo', 'bar', 'baz']

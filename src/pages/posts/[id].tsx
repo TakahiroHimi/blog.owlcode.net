@@ -1,9 +1,9 @@
 /* eslint-disable react/no-children-prop */
 import { css } from '@emotion/react'
 import Contents from 'components/AsideCards/Contents'
-import TagList from 'components/AsideCards/TagList'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import CodeBlock from 'components/md/CodeBlock'
+import Tag from 'components/Tag'
 import 'github-markdown-css'
 import { getAllPostIds, getPostData } from 'lib/posts'
 import { GetStaticPaths, GetStaticProps } from 'next'
@@ -16,7 +16,7 @@ import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } fr
 import colors from 'styles/colors'
 import { MetaData } from 'utils/types'
 
-type Props = Pick<MetaData, 'created' | 'title' | 'tags'> & {
+type Props = Pick<MetaData, 'created' | 'updated' | 'title' | 'tags'> & {
   mdBody: string
 }
 
@@ -28,7 +28,7 @@ const h3: HeadingComponent = ({ node, ...props }) => {
   return <h3 id={node.position?.start.line.toString()}>{props.children}</h3>
 }
 
-const Post: VFC<Props> = ({ title, created, tags, mdBody }) => {
+const Post: VFC<Props> = ({ title, created, updated, tags, mdBody }) => {
   const router = useRouter()
 
   return (
@@ -39,7 +39,6 @@ const Post: VFC<Props> = ({ title, created, tags, mdBody }) => {
       <ContentsLayout
         asideCards={
           <>
-            <TagList tags={tags} />
             <Contents mdBody={mdBody} />
           </>
         }
@@ -47,7 +46,17 @@ const Post: VFC<Props> = ({ title, created, tags, mdBody }) => {
       >
         <div css={container}>
           <h1 css={articleTitle}>{title}</h1>
-          <p css={date}>{created}</p>
+          <ul css={tagsContainer}>
+            {tags.map((tag) => (
+              <li key={tag}>
+                <Tag tag={tag} />
+              </li>
+            ))}
+          </ul>
+          <p css={date}>
+            公開日：{created}
+            {updated && `${'　　'}更新日：${updated}`}
+          </p>
           <article className="markdown-body">
             <ReactMarkdown
               children={mdBody}
@@ -100,6 +109,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     props: {
       title: postData?.title ?? '',
       created: postData?.created ?? '',
+      updated: postData?.updated ?? '',
       tags: postData?.tags ?? [],
       mdBody: postData?.mdBody ?? '',
     },
@@ -121,6 +131,13 @@ const articleTitle = css`
   font-size: 2.5rem;
   font-weight: bold;
   margin-top: 8px;
+`
+
+const tagsContainer = css`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 8px;
+  margin: 12px 0px 0px 0px;
 `
 
 const shareButtons = css`
