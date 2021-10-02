@@ -12,7 +12,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         styles={css`
           html,
           body {
-            font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif,
+              Apple Color Emoji, Segoe UI Emoji;
             color: ${colors.black};
           }
         `}

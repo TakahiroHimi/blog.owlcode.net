@@ -29,4 +29,5 @@ const h1 = css`
   background-image: linear-gradient(to top, ${colors.blue50} 0%, ${colors.blue200} 100%);
   font-size: 36px;
   font-weight: bold;
+  font-family: 'Roboto', 'Noto Sans JP', sans-serif;
 `

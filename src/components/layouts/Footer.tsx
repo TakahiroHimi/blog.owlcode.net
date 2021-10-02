@@ -37,7 +37,7 @@ const link = css`
 
 const toHome = css`
   color: ${colors.blue400};
-
   font-size: 18px;
   font-weight: bold;
+  font-family: 'Roboto', 'Noto Sans JP', sans-serif;
 `

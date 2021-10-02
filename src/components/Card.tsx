@@ -18,4 +18,5 @@ const wrapper = css`
   box-shadow: 1px 2px 2px #cccccccc;
   width: 100%;
   box-sizing: border-box;
+  border-radius: 2px;
 `

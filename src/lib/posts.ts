@@ -159,7 +159,7 @@ export const getPostData = async (id: string) => {
 
   return {
     id,
-    contentHtml: fileContents.replace(/---.*---/s, ''),
+    mdBody: fileContents.replace(/---.*---/s, ''),
     ...(matterResult.data as { created: string; title: string }),
   }
 }
