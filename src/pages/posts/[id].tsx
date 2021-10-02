@@ -3,16 +3,15 @@ import { css } from '@emotion/react'
 import Contents from 'components/AsideCards/Contents'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import CodeBlock from 'components/md/CodeBlock'
+import ShareIcons from 'components/ShareIcons'
 import Tag from 'components/Tag'
 import 'github-markdown-css'
 import { getAllPostIds, getPostData } from 'lib/posts'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
 import React, { VFC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { HeadingComponent } from 'react-markdown/src/ast-to-react'
-import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share'
 import colors from 'styles/colors'
 import { MetaData } from 'utils/types'
 
@@ -29,8 +28,6 @@ const h3: HeadingComponent = ({ node, ...props }) => {
 }
 
 const Post: VFC<Props> = ({ title, created, updated, tags, mdBody }) => {
-  const router = useRouter()
-
   return (
     <React.Fragment>
       <Head>
@@ -40,6 +37,7 @@ const Post: VFC<Props> = ({ title, created, updated, tags, mdBody }) => {
         asideCards={
           <>
             <Contents mdBody={mdBody} />
+            <ShareIcons title={title} />
           </>
         }
         sticky
@@ -67,18 +65,6 @@ const Post: VFC<Props> = ({ title, created, updated, tags, mdBody }) => {
               }}
             />
           </article>
-          <aside css={shareButtons}>
-            <TwitterShareButton
-              url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
-              title={title}
-              via={process.env.NEXT_PUBLIC_TWITTER_ID}
-            >
-              <TwitterIcon round size={50} />
-            </TwitterShareButton>
-            <FacebookShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
-              <FacebookIcon round size={50} />
-            </FacebookShareButton>
-          </aside>
         </div>
       </ContentsLayout>
     </React.Fragment>
@@ -118,7 +104,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
 const container = css`
   width: 100%;
-  padding-right: 28px;
+  padding: 0px 28px 40px 0px;
+  box-sizing: border-box;
 `
 
 const date = css`
@@ -138,11 +125,4 @@ const tagsContainer = css`
   flex-wrap: wrap;
   gap: 8px 8px;
   margin: 12px 0px 0px 0px;
-`
-
-const shareButtons = css`
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  margin: 64px 0px 32px;
 `

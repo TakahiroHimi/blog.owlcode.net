@@ -33,7 +33,7 @@ const wrapper = css`
 
 const childrenWrapper = css`
   width: 100%;
-  max-width: 780px;
+  max-width: 900px;
 `
 
 const asideContainer = css`
