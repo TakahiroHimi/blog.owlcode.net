@@ -1,6 +1,7 @@
 /* eslint-disable react/no-children-prop */
 import { css } from '@emotion/react'
 import Contents from 'components/AsideCards/Contents'
+import TagList from 'components/AsideCards/TagList'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import CodeBlock from 'components/md/CodeBlock'
 import 'github-markdown-css'
@@ -13,10 +14,9 @@ import ReactMarkdown from 'react-markdown'
 import { HeadingComponent } from 'react-markdown/src/ast-to-react'
 import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share'
 import colors from 'styles/colors'
+import { MetaData } from 'utils/types'
 
-type Props = {
-  title: string
-  created: string
+type Props = Pick<MetaData, 'created' | 'title' | 'tags'> & {
   mdBody: string
 }
 
@@ -28,7 +28,7 @@ const h3: HeadingComponent = ({ node, ...props }) => {
   return <h3 id={node.position?.start.line.toString()}>{props.children}</h3>
 }
 
-const Post: VFC<Props> = ({ title, created, mdBody }) => {
+const Post: VFC<Props> = ({ title, created, tags, mdBody }) => {
   const router = useRouter()
 
   return (
@@ -36,7 +36,14 @@ const Post: VFC<Props> = ({ title, created, mdBody }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <ContentsLayout asideCards={<Contents mdBody={mdBody} />}>
+      <ContentsLayout
+        asideCards={
+          <>
+            <TagList tags={tags} />
+            <Contents mdBody={mdBody} />
+          </>
+        }
+      >
         <div css={container}>
           <p css={date}>{created}</p>
           <h1 css={articleTitle}>{title}</h1>
@@ -92,6 +99,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     props: {
       title: postData?.title ?? '',
       created: postData?.created ?? '',
+      tags: postData?.tags ?? [],
       mdBody: postData?.mdBody ?? '',
     },
   }

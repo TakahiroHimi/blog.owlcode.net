@@ -160,6 +160,6 @@ export const getPostData = async (id: string) => {
   return {
     id,
     mdBody: fileContents.replace(/---.*---/s, ''),
-    ...(matterResult.data as { created: string; title: string }),
+    ...(matterResult.data as Omit<MetaData, 'id'>),
   }
 }
