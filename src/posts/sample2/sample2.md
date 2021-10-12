@@ -2,7 +2,7 @@
 created: '2020-08-09'
 updated: ''
 title: サンプル記事
-visual: ''
+visual: 'note'
 tags: ['test']
 ---
 

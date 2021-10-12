@@ -9,13 +9,14 @@ import 'github-markdown-css'
 import { getAllPostIds, getPostData } from 'lib/posts'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import React, { VFC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { HeadingComponent } from 'react-markdown/src/ast-to-react'
 import colors from 'styles/colors'
 import { MetaData } from 'utils/types'
 
-type Props = Pick<MetaData, 'created' | 'updated' | 'title' | 'tags'> & {
+type Props = Pick<MetaData, 'created' | 'updated' | 'title' | 'visual' | 'tags'> & {
   mdBody: string
 }
 
@@ -27,10 +28,24 @@ const h3: HeadingComponent = ({ node, ...props }) => {
   return <h3 id={node.position?.start.line.toString()}>{props.children}</h3>
 }
 
-const Post: VFC<Props> = ({ title, created, updated, tags, mdBody }) => {
+const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => {
+  const router = useRouter()
   return (
     <React.Fragment>
       <Head>
+        <meta property="og:title" content={title} key="ogtitle" />
+        <meta property="og:type" content="article" key="ogtype" />
+        <meta property="og:description" content={mdBody.substring(0, 200)} key="ogdesc" />
+        <meta
+          property="og:url"
+          content={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
+          key="ogurl"
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.NEXT_PUBLIC_OGP_URL}/${title}.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fogp.owlcode.net%2Fimages%2F${visual}.png`}
+          key="ogimage"
+        />
         <title>{title}</title>
       </Head>
       <ContentsLayout
@@ -96,6 +111,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       title: postData?.title ?? '',
       created: postData?.created ?? '',
       updated: postData?.updated ?? '',
+      visual: postData?.visual ?? '',
       tags: postData?.tags ?? [],
       mdBody: postData?.mdBody ?? '',
     },

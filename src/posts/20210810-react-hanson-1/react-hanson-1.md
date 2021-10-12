@@ -2,7 +2,7 @@
 created: '2020-08-10'
 updated: ''
 title: Reactハンズオンラーニング
-visual: ''
+visual: 'react'
 tags: ['react', 'book', 'tset3']
 ---
 

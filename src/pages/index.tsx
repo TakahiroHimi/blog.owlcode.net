@@ -19,15 +19,6 @@ const Home: NextPage<Props> = ({ allPostsData, tagCount, monthCount }) => {
   return (
     <React.Fragment>
       <Head>
-        <meta property="og:title" content="blog.owlcode.net" />
-        <meta property="og:type" content="blog" />
-        <meta
-          property="og:description"
-          content={`@${process.env.NEXT_PUBLIC_TWITTER_ID}の技術ブログ＆雑記`}
-        />
-        <meta property="og:url" content={process.env.NEXT_PUBLIC_ROOT_URL} />
-        <meta property="og:site_name" content="blog.owlcode.net" />
-        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_OGP_URL}/blogTopOGP.png`} />
         <title>blog.owlcode.net</title>
       </Head>
       <ContentsLayout asideCards={<ArticleNavi tagCount={tagCount} monthCount={monthCount} />}>

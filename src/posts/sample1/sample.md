@@ -2,7 +2,7 @@
 created: '2020-08-07'
 updated: '2020-09-01'
 title: サンプル記事
-visual: ''
+visual: 'note'
 tags: ['test', 'test2', 'tset3', 'hoge', 'fuga', 'foo', 'bar', 'baz']
 ---
 
