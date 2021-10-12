@@ -11,6 +11,7 @@ import 'github-markdown-css'
 import { getAllPostIds, getPostData } from 'lib/posts'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { VFC } from 'react'
 import ReactMarkdown from 'react-markdown'
@@ -64,6 +65,14 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => 
         sticky
       >
         <div css={container}>
+          <div css={imageWrapper}>
+            <Image
+              src={`${process.env.NEXT_PUBLIC_OGP_URL}/images/${visual || 'note'}.png`}
+              alt={visual}
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
           <h1 css={articleTitle}>{title}</h1>
           <div css={dateContainer}>
             <div css={date}>
@@ -137,6 +146,13 @@ const container = css`
   width: 100%;
   padding: 0px 28px 40px 0px;
   box-sizing: border-box;
+`
+
+const imageWrapper = css`
+  display: flex;
+  height: 100px;
+  position: relative;
+  margin-bottom: 24px;
 `
 
 const articleTitle = css`
