@@ -1,5 +1,7 @@
 /* eslint-disable react/no-children-prop */
 import { css } from '@emotion/react'
+import { mdiClockTimeTwoOutline, mdiLeadPencil } from '@mdi/js'
+import Icon from '@mdi/react'
 import Contents from 'components/AsideCards/Contents'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import CodeBlock from 'components/md/CodeBlock'
@@ -59,6 +61,18 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => 
       >
         <div css={container}>
           <h1 css={articleTitle}>{title}</h1>
+          <div css={dateContainer}>
+            <div css={date}>
+              <Icon path={mdiLeadPencil} size={0.7} />
+              <p>{created}</p>
+            </div>
+            {updated && (
+              <div css={date}>
+                <Icon path={mdiClockTimeTwoOutline} size={0.7} />
+                <p>{updated}</p>
+              </div>
+            )}
+          </div>
           <ul css={tagsContainer}>
             {tags.map((tag) => (
               <li key={tag}>
@@ -66,10 +80,7 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => 
               </li>
             ))}
           </ul>
-          <p css={date}>
-            公開日：{created}
-            {updated && `${'　　'}更新日：${updated}`}
-          </p>
+
           <article className="markdown-body">
             <ReactMarkdown
               children={mdBody}
@@ -124,21 +135,30 @@ const container = css`
   box-sizing: border-box;
 `
 
-const date = css`
-  font-size: 1rem;
-  color: ${colors.gray200};
-  margin: 12px 0px 40px;
-`
-
 const articleTitle = css`
   font-size: 2.5rem;
   font-weight: bold;
   margin-top: 8px;
 `
 
+const dateContainer = css`
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 12px 0px 0px 0px;
+`
+
+const date = css`
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: ${colors.gray200};
+  margin-bottom: 8px;
+`
+
 const tagsContainer = css`
   display: flex;
   flex-wrap: wrap;
   gap: 8px 8px;
-  margin: 12px 0px 0px 0px;
+  margin: 8px 0px 40px;
 `
