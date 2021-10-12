@@ -9,7 +9,7 @@ const Footer: VFC = () => {
       <nav>
         <Link href="/">
           <a css={link}>
-            <span css={toHome}>blog.thimi.io</span>
+            <span css={toHome}>{process.env.NEXT_PUBLIC_BLOG_TITLE}</span>
           </a>
         </Link>
       </nav>

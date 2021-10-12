@@ -10,7 +10,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <React.Fragment>
       <Head>
-        <meta property="og:title" content="blog.owlcode.net" key="ogtitle" />
+        <meta property="og:title" content={process.env.NEXT_PUBLIC_BLOG_TITLE} key="ogtitle" />
         <meta property="og:type" content="blog" key="ogtype" />
         <meta
           property="og:description"
@@ -18,7 +18,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           key="ogdesc"
         />
         <meta property="og:url" content={process.env.NEXT_PUBLIC_ROOT_URL} key="ogurl" />
-        <meta property="og:site_name" content="blog.owlcode.net" key="ogsite_name" />
+        <meta
+          property="og:site_name"
+          content={process.env.NEXT_PUBLIC_BLOG_TITLE}
+          key="ogsite_name"
+        />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_OGP_URL}/blogTopOGP.png`}

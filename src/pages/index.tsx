@@ -19,7 +19,7 @@ const Home: NextPage<Props> = ({ allPostsData, tagCount, monthCount }) => {
   return (
     <React.Fragment>
       <Head>
-        <title>blog.owlcode.net</title>
+        <title>{process.env.NEXT_PUBLIC_BLOG_TITLE}</title>
       </Head>
       <ContentsLayout asideCards={<ArticleNavi tagCount={tagCount} monthCount={monthCount} />}>
         <ArticleList postsData={allPostsData} />

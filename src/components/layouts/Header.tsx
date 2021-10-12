@@ -8,7 +8,7 @@ const Header: VFC = () => {
     <header>
       <Link href="/">
         <a css={link}>
-          <h1 css={h1}>blog.thimi.io</h1>
+          <h1 css={h1}>{process.env.NEXT_PUBLIC_BLOG_TITLE}</h1>
         </a>
       </Link>
     </header>
