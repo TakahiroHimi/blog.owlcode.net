@@ -19,13 +19,18 @@ const ArticleList: VFC<Props> = ({ postsData }) => {
         <ul>
           {postsData.map(({ id, created, updated, title, visual, tags }) => (
             <li key={id} css={listItem}>
-              <div css={imageWrapper}>
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_OGP_URL}/images/${visual || 'note'}.png`}
-                  alt={visual}
-                  layout="fill"
-                />
-              </div>
+              <Link href={`/posts/${id}`}>
+                <a>
+                  <div css={imageWrapper}>
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_OGP_URL}/images/${visual || 'note'}.png`}
+                      alt={visual}
+                      layout="fill"
+                    />
+                  </div>
+                </a>
+              </Link>
+
               <div>
                 <Link href={`/posts/${id}`}>
                   <a css={titleText}>{title}</a>
@@ -81,14 +86,28 @@ const imageWrapper = css`
   width: 100px;
   height: 100px;
   position: relative;
+
+  &:hover {
+    opacity: 0.7;
+  }
 `
 
-const titleText = css`
-  font-size: 1.7rem;
-  color: ${colors.blue400};
+const link = css`
   text-decoration: none;
   cursor: pointer;
 `
+
+const titleText = css(
+  link,
+  css`
+    font-size: 1.7rem;
+    color: ${colors.blue400};
+
+    &:hover {
+      opacity: 0.7;
+    }
+  `
+)
 
 const dateContainer = css`
   display: flex;
@@ -109,9 +128,4 @@ const tagsContainer = css`
   margin-top: 4px;
   display: flex;
   gap: 8px;
-`
-
-const link = css`
-  text-decoration: none;
-  cursor: pointer;
 `
