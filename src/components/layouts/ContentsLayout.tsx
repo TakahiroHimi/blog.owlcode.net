@@ -29,6 +29,7 @@ const wrapper = css`
   margin: 0px auto;
   padding: 32px;
   position: relative;
+  gap: 24px;
 `
 
 const childrenWrapper = css`

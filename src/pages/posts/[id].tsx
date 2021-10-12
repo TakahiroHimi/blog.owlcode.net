@@ -45,7 +45,11 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => 
         />
         <meta
           property="og:image"
-          content={`${process.env.NEXT_PUBLIC_OGP_URL}/${title}.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fogp.owlcode.net%2Fimages%2F${visual}.png`}
+          content={`${
+            process.env.NEXT_PUBLIC_OGP_URL
+          }/${title}.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fogp.owlcode.net%2Fimages%2F${
+            visual || 'note'
+          }.png`}
           key="ogimage"
         />
         <title>{title}</title>

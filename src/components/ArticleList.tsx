@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 import { mdiClockTimeTwoOutline, mdiLeadPencil } from '@mdi/js'
 import Icon from '@mdi/react'
+import Image from 'next/image'
 import Link from 'next/link'
 import React, { VFC } from 'react'
 import colors from 'styles/colors'
@@ -16,32 +17,41 @@ const ArticleList: VFC<Props> = ({ postsData }) => {
     <div css={articlesContainer}>
       <section>
         <ul>
-          {postsData.map(({ id, created, updated, title, tags }) => (
+          {postsData.map(({ id, created, updated, title, visual, tags }) => (
             <li key={id} css={listItem}>
-              <Link href={`/posts/${id}`}>
-                <a css={titleText}>{title}</a>
-              </Link>
-              <div css={dateContainer}>
-                <div css={date}>
-                  <Icon path={mdiLeadPencil} size={0.7} />
-                  <p>{created}</p>
-                </div>
-                {updated && (
-                  <div css={date}>
-                    <Icon path={mdiClockTimeTwoOutline} size={0.7} />
-                    <p>{updated}</p>
-                  </div>
-                )}
+              <div css={imageWrapper}>
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_OGP_URL}/images/${visual || 'note'}.png`}
+                  alt={visual}
+                  layout="fill"
+                />
               </div>
+              <div>
+                <Link href={`/posts/${id}`}>
+                  <a css={titleText}>{title}</a>
+                </Link>
+                <div css={dateContainer}>
+                  <div css={date}>
+                    <Icon path={mdiLeadPencil} size={0.7} />
+                    <p>{created}</p>
+                  </div>
+                  {updated && (
+                    <div css={date}>
+                      <Icon path={mdiClockTimeTwoOutline} size={0.7} />
+                      <p>{updated}</p>
+                    </div>
+                  )}
+                </div>
 
-              <div css={tagsContainer}>
-                {tags.map((tag) => (
-                  <Link key={tag} href={`/tags/${tag}`}>
-                    <a css={link}>
-                      <Tag tag={tag} />
-                    </a>
-                  </Link>
-                ))}
+                <div css={tagsContainer}>
+                  {tags.map((tag) => (
+                    <Link key={tag} href={`/tags/${tag}`}>
+                      <a css={link}>
+                        <Tag tag={tag} />
+                      </a>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </li>
           ))}
@@ -58,7 +68,19 @@ const articlesContainer = css`
 `
 
 const listItem = css`
-  margin-bottom: 32px;
+  display: flex;
+  padding: 16px;
+  gap: 24px;
+
+  &:not(:last-child) {
+    border-bottom: 2px solid ${colors.gray100};
+  }
+`
+
+const imageWrapper = css`
+  width: 100px;
+  height: 100px;
+  position: relative;
 `
 
 const titleText = css`
