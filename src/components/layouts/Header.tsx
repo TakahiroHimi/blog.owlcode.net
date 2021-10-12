@@ -44,6 +44,7 @@ const h1 = css`
   font-size: 32px;
   font-weight: bold;
   font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+  z-index: 1;
 `
 
 const imageWrapper = css`
@@ -52,4 +53,5 @@ const imageWrapper = css`
   transform: translate(0px, -15px);
   top: 0;
   right: 0;
+  z-index: 0;
 `

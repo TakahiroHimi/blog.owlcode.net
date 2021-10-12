@@ -4,6 +4,7 @@ import Icon from '@mdi/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { VFC } from 'react'
+import breakPoints from 'styles/breakPoints'
 import colors from 'styles/colors'
 import { MetaData } from 'utils/types'
 import Tag from './Tag'
@@ -20,14 +21,14 @@ const ArticleList: VFC<Props> = ({ postsData }) => {
           {postsData.map(({ id, created, updated, title, visual, tags }) => (
             <li key={id} css={listItem}>
               <Link href={`/posts/${id}`}>
-                <a>
-                  <div css={imageWrapper}>
+                <a css={imageWrapper}>
+                  <figure css={image}>
                     <Image
                       src={`${process.env.NEXT_PUBLIC_OGP_URL}/images/${visual || 'note'}.png`}
                       alt={visual}
                       layout="fill"
                     />
-                  </div>
+                  </figure>
                 </a>
               </Link>
 
@@ -83,12 +84,24 @@ const listItem = css`
 `
 
 const imageWrapper = css`
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const image = css`
   width: 100px;
   height: 100px;
   position: relative;
 
   &:hover {
     opacity: 0.7;
+  }
+
+  @media screen and (max-width: ${breakPoints.lg}) {
+    width: 50px;
+    height: 50px;
   }
 `
 
@@ -105,6 +118,10 @@ const titleText = css(
 
     &:hover {
       opacity: 0.7;
+    }
+
+    @media screen and (max-width: ${breakPoints.lg}) {
+      font-size: 1.4rem;
     }
   `
 )
@@ -127,5 +144,6 @@ const date = css`
 const tagsContainer = css`
   margin-top: 4px;
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 `

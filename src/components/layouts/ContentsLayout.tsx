@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 import Profile from 'components/AsideCards/Profile'
 import React, { ReactNode, VFC } from 'react'
+import breakPoints from 'styles/breakPoints'
 
 type Props = {
   children: ReactNode
@@ -30,6 +31,11 @@ const wrapper = css`
   padding: 32px;
   position: relative;
   gap: 24px;
+
+  @media screen and (max-width: ${breakPoints.lg}) {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 `
 
 const childrenWrapper = css`
@@ -43,6 +49,10 @@ const asideContainer = css`
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  @media screen and (max-width: ${breakPoints.lg}) {
+    width: 100%;
+  }
 `
 
 const stickyContainer = css(
