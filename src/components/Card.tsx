@@ -14,7 +14,7 @@ const Card: VFC<Props> = ({ children, overflow = false }) => {
 export default Card
 
 const wrapper = css`
-  background-color: ${colors.white};
+  background-color: ${colors.blue10};
   padding: 20px;
   box-shadow: 1px 2px 2px #cccccccc;
   width: 100%;
