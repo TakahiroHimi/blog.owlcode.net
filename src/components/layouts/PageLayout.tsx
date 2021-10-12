@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import React, { ReactNode, VFC } from 'react'
+import colors from 'styles/colors'
 import Footer from './Footer'
 import Header from './Header'
 
@@ -22,7 +23,7 @@ const PageLayout: VFC<Props> = ({ children }) => {
 export default PageLayout
 
 const wrapper = css`
-  background-color: rgba(165, 197, 214, 0.1);
+  background-color: ${colors.blue100}10;
   min-height: 100vh;
   position: relative;
   padding-bottom: 54px;
