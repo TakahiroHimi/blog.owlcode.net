@@ -24,6 +24,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           content={`${process.env.NEXT_PUBLIC_OGP_URL}/blogTopOGP.png`}
           key="ogimage"
         />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content={process.env.NEXT_PUBLIC_TWITTER_ID} />
       </Head>
       <Global
         styles={css`
