@@ -144,7 +144,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
 const container = css`
   width: 100%;
-  padding: 0px 28px 40px 0px;
+  padding: 0px 0px 40px 0px;
   box-sizing: border-box;
 `
 

@@ -13,47 +13,49 @@ import { MetaData } from 'utils/types'
 
 type Props = Pick<MetaData, 'title'>
 
-const Share: VFC<Props> = ({ title }) => {
+const ShareIcons: VFC<Props> = ({ title }) => {
   const router = useRouter()
   return (
     <div css={shareButtonsContainer}>
-      <TwitterShareButton
-        url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
-        title={title}
-        via={process.env.NEXT_PUBLIC_TWITTER_ID}
-      >
-        <div css={twitterIconWrapper}>
+      <div css={twitterIconWrapper}>
+        <TwitterShareButton
+          url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
+          title={title}
+          via={process.env.NEXT_PUBLIC_TWITTER_ID}
+        >
           <TwitterIcon size={40} />
-        </div>
-      </TwitterShareButton>
-      <FacebookShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
-        <div css={facebookIconWrapper}>
+        </TwitterShareButton>
+      </div>
+
+      <div css={facebookIconWrapper}>
+        <FacebookShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
           <FacebookIcon size={40} />
-        </div>
-      </FacebookShareButton>
-      <HatenaShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
-        <div css={hatenaIconWrapper}>
+        </FacebookShareButton>
+      </div>
+
+      <div css={hatenaIconWrapper}>
+        <HatenaShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
           <HatenaIcon size={40} />
-        </div>
-      </HatenaShareButton>
+        </HatenaShareButton>
+      </div>
     </div>
   )
 }
 
-export default Share
+export default ShareIcons
 
 const shareButtonsContainer = css`
   display: flex;
   justify-content: stretch;
   margin: 0px auto;
-  max-width: 300px;
+  width: 100%;
 `
 
 const iconBase = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
+  width: 100%;
   transition: opacity 0.1s;
 
   &:hover {

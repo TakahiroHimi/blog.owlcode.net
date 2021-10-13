@@ -10,6 +10,10 @@ tags: ['test', 'test2', 'tset3', 'hoge', 'fuga', 'foo', 'bar', 'baz']
 
 サンプル
 
+```ts
+const hoge = 'hogehogehogehogehogehogehogehogehogehoeghogehogehogehogehogehogehogehoge'
+```
+
 ## 見出し１
 
 サンプル
