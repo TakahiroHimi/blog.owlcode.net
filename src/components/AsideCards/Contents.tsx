@@ -50,7 +50,7 @@ const h2 = css(
     font-weight: 600;
     font-size: 1rem;
     margin-top: 8px;
-    text-indent: 8px;
+    padding-left: 1rem;
   `
 )
 
@@ -59,7 +59,7 @@ const h3 = css(
   css`
     font-size: 0.9rem;
     margin-top: 4px;
-    text-indent: 16px;
+    padding-left: 2rem;
   `
 )
 
