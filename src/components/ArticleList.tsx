@@ -94,6 +94,7 @@ const image = css`
   width: 100px;
   height: 100px;
   position: relative;
+  cursor: pointer;
 
   &:hover {
     opacity: 0.7;
