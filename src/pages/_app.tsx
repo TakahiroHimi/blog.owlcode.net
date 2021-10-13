@@ -30,6 +30,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content={'@' + process.env.NEXT_PUBLIC_TWITTER_ID} />
+        <meta name="twitter:creator" content={'@' + process.env.NEXT_PUBLIC_TWITTER_ID} />
       </Head>
       <Global
         styles={css`
