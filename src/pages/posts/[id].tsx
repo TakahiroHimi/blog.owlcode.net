@@ -17,6 +17,7 @@ import { useRouter } from 'next/router'
 import React, { VFC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { HeadingComponent } from 'react-markdown/src/ast-to-react'
+import removeMd from 'remove-markdown'
 import breakPoints from 'styles/breakPoints'
 import colors from 'styles/colors'
 import { MetaData } from 'utils/types'
@@ -40,7 +41,11 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => 
       <Head>
         <meta property="og:title" content={title} key="ogtitle" />
         <meta property="og:type" content="article" key="ogtype" />
-        <meta property="og:description" content={mdBody.substring(0, 200)} key="ogdesc" />
+        <meta
+          property="og:description"
+          content={removeMd(mdBody).replace(/\r?\n/g, ' ').substring(0, 200)}
+          key="ogdesc"
+        />
         <meta
           property="og:url"
           content={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
