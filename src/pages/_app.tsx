@@ -29,7 +29,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           key="ogimage"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={process.env.NEXT_PUBLIC_TWITTER_ID} />
+        <meta name="twitter:site" content={'@' + process.env.NEXT_PUBLIC_TWITTER_ID} />
       </Head>
       <Global
         styles={css`
