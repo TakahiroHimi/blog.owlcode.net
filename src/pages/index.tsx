@@ -1,5 +1,6 @@
 import ArticleList from 'components/ArticleList'
 import ArticleNavi from 'components/AsideCards/ArticleNavi'
+import Profile from 'components/AsideCards/Profile'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import { getMonthCount, MonthCount } from 'lib/date'
 import { getTagCount, TagCount } from 'lib/tags'
@@ -21,7 +22,14 @@ const Home: NextPage<Props> = ({ allPostsData, tagCount, monthCount }) => {
       <Head>
         <title>{process.env.NEXT_PUBLIC_BLOG_TITLE}</title>
       </Head>
-      <ContentsLayout asideCards={<ArticleNavi tagCount={tagCount} monthCount={monthCount} />}>
+      <ContentsLayout
+        asideCards={
+          <>
+            <Profile />
+            <ArticleNavi tagCount={tagCount} monthCount={monthCount} />
+          </>
+        }
+      >
         <ArticleList postsData={allPostsData} />
       </ContentsLayout>
     </React.Fragment>

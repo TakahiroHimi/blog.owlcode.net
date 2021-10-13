@@ -1,5 +1,6 @@
 import ArticleList from 'components/ArticleList'
 import ArticleNavi from 'components/AsideCards/ArticleNavi'
+import Profile from 'components/AsideCards/Profile'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import { getMonthCount, MonthCount } from 'lib/date'
 import { getSortedPostsData } from 'lib/posts'
@@ -28,7 +29,14 @@ const TagPage: VFC<Props> = ({ postsData, tagCount, monthCount }) => {
       <Head>
         <title>{`Tag | ${router.query.tag}`}</title>
       </Head>
-      <ContentsLayout asideCards={<ArticleNavi tagCount={tagCount} monthCount={monthCount} />}>
+      <ContentsLayout
+        asideCards={
+          <>
+            <Profile />
+            <ArticleNavi tagCount={tagCount} monthCount={monthCount} />
+          </>
+        }
+      >
         <ArticleList postsData={postsData} />
       </ContentsLayout>
     </React.Fragment>

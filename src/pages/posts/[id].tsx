@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { mdiClockTimeTwoOutline, mdiLeadPencil } from '@mdi/js'
 import Icon from '@mdi/react'
 import Contents from 'components/AsideCards/Contents'
+import Profile from 'components/AsideCards/Profile'
 import ContentsLayout from 'components/layouts/ContentsLayout'
 import CodeBlock from 'components/md/CodeBlock'
 import ShareIcons from 'components/ShareIcons'
@@ -16,6 +17,7 @@ import { useRouter } from 'next/router'
 import React, { VFC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { HeadingComponent } from 'react-markdown/src/ast-to-react'
+import breakPoints from 'styles/breakPoints'
 import colors from 'styles/colors'
 import { MetaData } from 'utils/types'
 
@@ -58,8 +60,15 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => 
       <ContentsLayout
         asideCards={
           <>
-            <Contents mdBody={mdBody} />
-            <ShareIcons title={title} />
+            <div css={profile}>
+              <Profile />
+            </div>
+            <div css={contents}>
+              <Contents mdBody={mdBody} />
+            </div>
+            <div css={shareIcons}>
+              <ShareIcons title={title} />
+            </div>
           </>
         }
         sticky
@@ -141,6 +150,24 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     },
   }
 }
+
+const profile = css`
+  @media screen and (max-width: ${breakPoints.lg}) {
+    order: 2;
+  }
+`
+
+const contents = css`
+  @media screen and (max-width: ${breakPoints.lg}) {
+    display: none;
+  }
+`
+
+const shareIcons = css`
+  @media screen and (max-width: ${breakPoints.lg}) {
+    order: 1;
+  }
+`
 
 const container = css`
   width: 100%;

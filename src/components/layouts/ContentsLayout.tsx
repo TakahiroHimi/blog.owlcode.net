@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import Profile from 'components/AsideCards/Profile'
 import React, { ReactNode, VFC } from 'react'
 import breakPoints from 'styles/breakPoints'
 
@@ -13,10 +12,7 @@ const ContentsLayout: VFC<Props> = ({ children, asideCards, sticky = false }) =>
   return (
     <div css={wrapper}>
       <div css={childrenWrapper}>{children}</div>
-      <aside css={sticky ? stickyContainer : asideContainer}>
-        <Profile />
-        {asideCards}
-      </aside>
+      <aside css={sticky ? stickyContainer : asideContainer}>{asideCards}</aside>
     </div>
   )
 }
