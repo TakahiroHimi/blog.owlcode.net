@@ -17,6 +17,7 @@ import { useRouter } from 'next/router'
 import React, { VFC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { HeadingComponent } from 'react-markdown/src/ast-to-react'
+import rehypeRaw from 'rehype-raw'
 import removeMd from 'remove-markdown'
 import breakPoints from 'styles/breakPoints'
 import colors from 'styles/colors'
@@ -43,7 +44,10 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => 
         <meta property="og:type" content="article" key="ogtype" />
         <meta
           property="og:description"
-          content={removeMd(mdBody).replace(/\r?\n/g, ' ').substring(0, 200)}
+          content={removeMd(mdBody)
+            .replace(/\r?\n/g, ' ')
+            .replace(/&nbsp;/g, '')
+            .substring(0, 200)}
           key="ogdesc"
         />
         <meta
@@ -111,6 +115,8 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => 
           <article className="markdown-body">
             <ReactMarkdown
               children={mdBody}
+              rehypePlugins={[rehypeRaw]}
+              linkTarget="blank"
               components={{
                 h2: h2,
                 h3: h3,
