@@ -1,7 +1,7 @@
 ---
 created: '2020-10-15'
 updated: ''
-title: tsconfig.jsonについてちゃんと調べた
+title: tsconfig.jsonを学ぶ
 visual: 'TypeScript'
 tags: ['TypeScript']
 ---
