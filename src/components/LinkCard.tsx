@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { css } from '@emotion/react'
-import Link from 'next/link'
 import React, { VFC } from 'react'
 import breakPoints from 'styles/breakPoints'
 import colors from 'styles/colors'
@@ -16,9 +15,9 @@ type Props = {
 
 const LinkCard: VFC<Props> = ({ href, title, desc, src, alt, siteName }) => {
   return (
-    <Link href={href}>
-      <a css={link}>
-        <div css={wrapper}>
+    <div css={wrapper}>
+      <a href={href} target="_blank" rel="noreferrer">
+        <div css={container}>
           <div css={siteInfo}>
             <div css={linkTitle}>{title}</div>
             <div css={linkDesc}>{desc}</div>
@@ -30,18 +29,20 @@ const LinkCard: VFC<Props> = ({ href, title, desc, src, alt, siteName }) => {
           </figure>
         </div>
       </a>
-    </Link>
+    </div>
   )
 }
 
 export default LinkCard
 
-const link = css`
-  text-decoration: none;
-  cursor: pointer;
+const wrapper = css`
+  a:link {
+    text-decoration: none;
+    cursor: pointer;
+  }
 `
 
-const wrapper = css`
+const container = css`
   height: 120px;
   display: flex;
   justify-content: space-between;
@@ -73,6 +74,7 @@ const linkDesc = css`
   overflow: hidden;
   -webkit-line-clamp: 2;
   display: -webkit-box;
+  max-height: 41px;
   -webkit-box-orient: vertical;
 `
 
