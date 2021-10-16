@@ -40,6 +40,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
               Apple Color Emoji, Segoe UI Emoji;
             color: ${colors.black80};
           }
+          .markdown-body {
+            ul {
+              list-style: disc;
+            }
+          }
         `}
       />
       <PageLayout>

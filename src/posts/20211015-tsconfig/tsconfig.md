@@ -191,14 +191,14 @@ npx create-next-app myapp --ts
 
 `target`, `lib`, `downlevelIteration`の設定内容組み合わせの正解が途中でわからなくなった。  
 
-**target**  
+- **target**  
 コンパイルして出力するjsのバージョンを指定する(`ES5`, `ES2020` など)。  
 
-**lib**  
+- **lib**  
 `target`で指定しているバージョンのJSでは使用できない機能を使いたい時に設定する。  
 例えば`target`に`ES3`を指定してるけど`Promise`(ES3には含まれていない)を使いたい場合、`"lib": ["es2015"]`とすることで使用可能になる。  
 
-**downlevelIteration**  
+- **downlevelIteration**  
 `target`の設定値が`ES5` or `ES3`のとき、この項目を`true`に設定することで一部構文(`for..of`など)が使用可能になる。  
 
 &nbsp;
