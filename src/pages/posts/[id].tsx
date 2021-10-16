@@ -5,6 +5,7 @@ import Icon from '@mdi/react'
 import Contents from 'components/AsideCards/Contents'
 import Profile from 'components/AsideCards/Profile'
 import ContentsLayout from 'components/layouts/ContentsLayout'
+import LinkCard from 'components/LinkCard'
 import CodeBlock from 'components/md/CodeBlock'
 import ShareIcons from 'components/ShareIcons'
 import Tag from 'components/Tag'
@@ -14,9 +15,10 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { fetchOgp, OGPFetchResult } from 'ogp-fetcher'
 import React, { VFC } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { HeadingComponent } from 'react-markdown/src/ast-to-react'
+import { HeadingComponent, ReactMarkdownProps } from 'react-markdown/src/ast-to-react'
 import rehypeRaw from 'rehype-raw'
 import removeMd from 'remove-markdown'
 import breakPoints from 'styles/breakPoints'
@@ -25,6 +27,7 @@ import { MetaData } from 'utils/types'
 
 type Props = Pick<MetaData, 'created' | 'updated' | 'title' | 'visual' | 'tags'> & {
   mdBody: string
+  ogps?: OGPFetchResult | null
 }
 
 const h2: HeadingComponent = ({ node, ...props }) => {
@@ -35,8 +38,31 @@ const h3: HeadingComponent = ({ node, ...props }) => {
   return <h3 id={node.position?.start.line.toString()}>{props.children}</h3>
 }
 
-const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => {
+const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody, ogps }) => {
   const router = useRouter()
+
+  const a: (
+    props: React.ClassAttributes<HTMLAnchorElement> &
+      React.AnchorHTMLAttributes<HTMLAnchorElement> &
+      ReactMarkdownProps
+  ) => React.ReactNode = ({ node, ...props }) => {
+    const href = typeof node.properties?.href === 'string' ? node.properties?.href : undefined
+    const ogp = ogps?.find((ogp) => ogp.url === href)
+
+    if (!href || !ogp) return <a {...props} />
+
+    const linkCardProps = {
+      href: href,
+      title: ogp['og:title'],
+      desc: ogp['og:description'],
+      src: ogp['og:image'],
+      alt: ogp['og:image:alt'],
+      siteName: ogp['og:site_name'],
+    }
+
+    return <LinkCard {...linkCardProps} />
+  }
+
   return (
     <React.Fragment>
       <Head>
@@ -118,6 +144,7 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody }) => 
               rehypePlugins={[rehypeRaw]}
               linkTarget="blank"
               components={{
+                a: a,
                 h2: h2,
                 h3: h3,
                 code: CodeBlock,
@@ -150,6 +177,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (params === undefined) return { notFound: true }
   const postData = await getPostData(params.id as string)
+  const regResult = postData?.mdBody.matchAll(/^<(https:\/\/.*?)>.*?$/gims)
+  const urls = regResult ? Array.from(regResult).map((reg) => reg[1]) : undefined
+  const ogps = urls !== undefined && urls.length > 1 ? await fetchOgp(urls) : null
+
   return {
     props: {
       title: postData?.title ?? '',
@@ -158,6 +189,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       visual: postData?.visual ?? '',
       tags: postData?.tags ?? [],
       mdBody: postData?.mdBody ?? '',
+      ogps: ogps,
     },
   }
 }

@@ -169,6 +169,7 @@ npx create-next-app myapp --ts
 ![JSONwithComments](https://raw.githubusercontent.com/TakahiroHimi/blog.owlcode.net/main/src/posts/20211015-tsconfig/JSONwithComments.png)
 
 これに関しては以下の記事に詳しく書かれていて勉強になった。  
+
 <https://syumai.hateblo.jp/entry/2020/03/31/024751>
 
 &nbsp;
@@ -179,7 +180,10 @@ npx create-next-app myapp --ts
 公式ドキュメントには更に詳細な説明や、項目によっては設定内容によってどう変わるのかサンプルコードまで載せてくれている。  
 <https://www.typescriptlang.org/ja/tsconfig>  
 
+&nbsp;
+
 公式ドキュメントでいまいちピンとこない項目については以下の記事が大変参考になった。  
+
 <https://qiita.com/ryokkkke/items/390647a7c26933940470>  
 <https://gist.github.com/azu/56a0411d69e2fc333d545bfe57933d07>  
 
