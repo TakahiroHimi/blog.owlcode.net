@@ -1,7 +1,7 @@
 ---
 created: '2020-10-16'
 updated: ''
-title: リンクカードを実装した
+title: Linkカードを実装した
 visual: ''
 tags: ['Note']
 ---
