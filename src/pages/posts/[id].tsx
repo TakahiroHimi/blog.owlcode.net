@@ -179,7 +179,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const postData = await getPostData(params.id as string)
   const regResult = postData?.mdBody.matchAll(/^<(https:\/\/.*?)>.*?$/gims)
   const urls = regResult ? Array.from(regResult).map((reg) => reg[1]) : undefined
-  const ogps = urls !== undefined && urls.length > 1 ? await fetchOgp(urls) : null
+  const ogps = urls !== undefined && urls.length > 0 ? await fetchOgp(urls) : null
 
   return {
     props: {
