@@ -40,7 +40,7 @@ const container = css`
   border: 2px solid ${colors.gray100};
   border-radius: 8px;
   color: ${colors.black80};
-  padding: 8px;
+  padding: 16px 16px 8px;
   box-sizing: border-box;
   gap: 8px;
   background-color: ${colors.blue10};
@@ -52,6 +52,7 @@ const container = css`
 `
 
 const linkTitle = css`
+  font-size: 1.1rem;
   font-weight: 600;
   overflow: hidden;
   -webkit-line-clamp: 1;
@@ -72,7 +73,7 @@ const linkDesc = css`
 const siteInfo = css`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   height: 100%;
 `
 
