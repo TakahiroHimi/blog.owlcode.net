@@ -27,6 +27,7 @@ const ArticleList: VFC<Props> = ({ postsData }) => {
                       src={`${process.env.NEXT_PUBLIC_OGP_URL}/images/${visual || 'note'}.png`}
                       alt={visual}
                       layout="fill"
+                      objectFit="contain"
                     />
                   </figure>
                 </a>
