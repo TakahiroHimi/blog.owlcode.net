@@ -44,6 +44,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             ul {
               list-style: disc;
             }
+            a:link {
+              text-decoration: none;
+            }
           }
         `}
       />

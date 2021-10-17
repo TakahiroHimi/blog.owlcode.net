@@ -15,32 +15,23 @@ type Props = {
 
 const LinkCard: VFC<Props> = ({ href, title, desc, src, alt, siteName }) => {
   return (
-    <div css={wrapper}>
-      <a href={href} target="_blank" rel="noreferrer">
-        <div css={container}>
-          <div css={siteInfo}>
-            <div css={linkTitle}>{title}</div>
-            <div css={linkDesc}>{desc}</div>
-            <div css={linkSiteName}>{siteName}</div>
-          </div>
-
-          <figure css={imageWrapper}>
-            <img css={image} src={src ?? '/noImage.jpg'} alt={alt} />
-          </figure>
+    <a href={href} target="_blank" rel="noreferrer">
+      <div css={container}>
+        <div css={siteInfo}>
+          <div css={linkTitle}>{title}</div>
+          <div css={linkDesc}>{desc}</div>
+          <div css={linkSiteName}>{siteName}</div>
         </div>
-      </a>
-    </div>
+
+        <figure css={imageWrapper}>
+          <img css={image} src={src ?? '/noImage.jpg'} alt={alt} />
+        </figure>
+      </div>
+    </a>
   )
 }
 
 export default LinkCard
-
-const wrapper = css`
-  a:link {
-    text-decoration: none;
-    cursor: pointer;
-  }
-`
 
 const container = css`
   height: 120px;
