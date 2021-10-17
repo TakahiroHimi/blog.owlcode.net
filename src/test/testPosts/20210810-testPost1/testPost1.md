@@ -3,7 +3,7 @@ created: '2021-08-10'
 updated: '2021-08-11'
 title: テスト用記事１
 visual: ''
-tags: ['test1', 'test2', 'tset3']
+tags: ['test1', 'test2', 'test3']
 ---
 
 # サンプル記事 h1
