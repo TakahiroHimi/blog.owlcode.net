@@ -1,11 +1,9 @@
 import { css } from '@emotion/react'
+import ArticleAsideCard from 'components/ArticleAsideCard'
 import ArticleBody from 'components/ArticleBody'
 import ArticleHead from 'components/ArticleHead'
 import ArticleHeader from 'components/ArticleHeader'
-import Contents from 'components/AsideCards/Contents'
-import Profile from 'components/AsideCards/Profile'
 import ContentsLayout from 'components/layouts/ContentsLayout'
-import ShareIcons from 'components/ShareIcons'
 import 'github-markdown-css'
 import { getAllPostIds, getPostData } from 'lib/posts'
 import { GetStaticPaths, GetStaticProps } from 'next'
@@ -13,7 +11,6 @@ import { useRouter } from 'next/router'
 import { fetchOgp, OGPFetchResult } from 'ogp-fetcher'
 import React, { VFC } from 'react'
 import removeMd from 'remove-markdown'
-import breakPoints from 'styles/breakPoints'
 import { MetaData } from 'utils/types'
 
 type Props = Pick<MetaData, 'created' | 'updated' | 'title' | 'visual' | 'tags'> & {
@@ -44,22 +41,7 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody, ogps 
         ogUrl={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
       />
 
-      <ContentsLayout
-        asideCards={
-          <>
-            <div css={profile}>
-              <Profile />
-            </div>
-            <div css={contents}>
-              <Contents mdBody={mdBody} />
-            </div>
-            <div css={shareIcons}>
-              <ShareIcons title={title} />
-            </div>
-          </>
-        }
-        sticky
-      >
+      <ContentsLayout asideCards={<ArticleAsideCard mdBody={mdBody} title={title} />} sticky>
         <div css={container}>
           <ArticleHeader
             title={title}
@@ -112,24 +94,6 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     },
   }
 }
-
-const profile = css`
-  @media screen and (max-width: ${breakPoints.lg}) {
-    order: 2;
-  }
-`
-
-const contents = css`
-  @media screen and (max-width: ${breakPoints.lg}) {
-    display: none;
-  }
-`
-
-const shareIcons = css`
-  @media screen and (max-width: ${breakPoints.lg}) {
-    order: 1;
-  }
-`
 
 const container = css`
   width: 100%;
