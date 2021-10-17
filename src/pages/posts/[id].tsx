@@ -1,14 +1,10 @@
-/* eslint-disable react/no-children-prop */
 import { css } from '@emotion/react'
+import ArticleBody from 'components/ArticleBody'
 import ArticleHead from 'components/ArticleHead'
 import ArticleHeader from 'components/ArticleHeader'
 import Contents from 'components/AsideCards/Contents'
 import Profile from 'components/AsideCards/Profile'
 import ContentsLayout from 'components/layouts/ContentsLayout'
-import LinkCard from 'components/LinkCard'
-import CodeBlock from 'components/md/CodeBlock'
-import h2 from 'components/md/h2'
-import h3 from 'components/md/h3'
 import ShareIcons from 'components/ShareIcons'
 import 'github-markdown-css'
 import { getAllPostIds, getPostData } from 'lib/posts'
@@ -16,9 +12,6 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { fetchOgp, OGPFetchResult } from 'ogp-fetcher'
 import React, { VFC } from 'react'
-import ReactMarkdown from 'react-markdown'
-import { ReactMarkdownProps } from 'react-markdown/src/ast-to-react'
-import rehypeRaw from 'rehype-raw'
 import removeMd from 'remove-markdown'
 import breakPoints from 'styles/breakPoints'
 import { MetaData } from 'utils/types'
@@ -30,28 +23,6 @@ type Props = Pick<MetaData, 'created' | 'updated' | 'title' | 'visual' | 'tags'>
 
 const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody, ogps }) => {
   const router = useRouter()
-
-  const a: (
-    props: React.ClassAttributes<HTMLAnchorElement> &
-      React.AnchorHTMLAttributes<HTMLAnchorElement> &
-      ReactMarkdownProps
-  ) => React.ReactNode = ({ node, ...props }) => {
-    const href = typeof node.properties?.href === 'string' ? node.properties?.href : undefined
-    const ogp = ogps?.find((ogp) => ogp.url === href)
-
-    if (!href || !ogp) return <a {...props} />
-
-    const linkCardProps = {
-      href: href,
-      title: ogp['og:title'],
-      desc: ogp['og:description'],
-      src: ogp['og:image'],
-      alt: ogp['og:image:alt'],
-      siteName: ogp['og:site_name'],
-    }
-
-    return <LinkCard {...linkCardProps} />
-  }
 
   const ogDesc = removeMd(mdBody)
     .replace(/\r?\n/g, ' ')
@@ -98,19 +69,7 @@ const Post: VFC<Props> = ({ title, created, updated, visual, tags, mdBody, ogps 
             tags={tags}
           />
 
-          <article className="markdown-body">
-            <ReactMarkdown
-              children={mdBody}
-              rehypePlugins={[rehypeRaw]}
-              linkTarget="blank"
-              components={{
-                a: a,
-                h2: h2,
-                h3: h3,
-                code: CodeBlock,
-              }}
-            />
-          </article>
+          <ArticleBody mdBody={mdBody} ogps={ogps ?? []} />
         </div>
       </ContentsLayout>
     </>
