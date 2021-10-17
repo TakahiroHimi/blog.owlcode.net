@@ -1,9 +1,9 @@
 import { css } from '@emotion/react'
 import React, { FC } from 'react'
 import breakPoints from 'styles/breakPoints'
-import Contents from './AsideCards/Contents'
-import Profile from './AsideCards/Profile'
-import ShareIcons from './ShareIcons'
+import Contents from '../AsideCards/Contents'
+import Profile from '../AsideCards/Profile'
+import ShareIcons from '../ShareIcons'
 
 type Props = {
   mdBody: string

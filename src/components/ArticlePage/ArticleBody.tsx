@@ -1,13 +1,13 @@
 /* eslint-disable react/no-children-prop */
+import LinkCard from 'components/LinkCard'
+import CodeBlock from 'components/md/CodeBlock'
+import h2 from 'components/md/h2'
+import h3 from 'components/md/h3'
 import { OGPFetchResult } from 'ogp-fetcher'
 import React, { FC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { ReactMarkdownProps } from 'react-markdown/src/ast-to-react'
 import rehypeRaw from 'rehype-raw'
-import LinkCard from './LinkCard'
-import CodeBlock from './md/CodeBlock'
-import h2 from './md/h2'
-import h3 from './md/h3'
 
 type Props = {
   mdBody: string

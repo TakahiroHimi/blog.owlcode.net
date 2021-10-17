@@ -1,11 +1,11 @@
 import { css } from '@emotion/react'
 import { mdiClockTimeTwoOutline, mdiLeadPencil } from '@mdi/js'
 import Icon from '@mdi/react'
+import Tag from 'components/Tag'
 import Image from 'next/image'
 import React, { VFC } from 'react'
 import colors from 'styles/colors'
 import { MetaData } from 'utils/types'
-import Tag from './Tag'
 
 type Props = Pick<MetaData, 'created' | 'updated' | 'title' | 'visual' | 'tags'>
 
