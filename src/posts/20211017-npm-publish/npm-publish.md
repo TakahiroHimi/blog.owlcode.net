@@ -1,7 +1,7 @@
 ---
 created: '2020-10-17'
 updated: ''
-title: npmでパッケージを公開する
+title: npmパッケージを作って公開する
 visual: 'npm'
 tags: ['npm', 'TypeScript']
 ---
