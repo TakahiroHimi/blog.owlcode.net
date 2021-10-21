@@ -8,7 +8,7 @@ import 'github-markdown-css'
 import { getAllPostIds, getPostData } from 'lib/posts'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { fetchOgp, OGPFetchResult } from 'ogp-fetcher'
+import { fetchOgpFromMd, OGPFetchResult } from 'ogp-fetcher'
 import React, { VFC } from 'react'
 import removeMd from 'remove-markdown'
 import { MetaData } from 'utils/types'
@@ -78,9 +78,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (params === undefined) return { notFound: true }
   const postData = await getPostData(params.id as string)
-  const regResult = postData?.mdBody.matchAll(/^<(https:\/\/.*?)>.*?$/gims)
-  const urls = regResult ? Array.from(regResult).map((reg) => reg[1]) : undefined
-  const ogps = urls !== undefined && urls.length > 0 ? await fetchOgp(urls) : null
+  const ogps = await fetchOgpFromMd(postData?.mdBody ?? '')
 
   return {
     props: {
