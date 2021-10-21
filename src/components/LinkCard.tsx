@@ -72,7 +72,7 @@ const linkDesc = css`
   display: -webkit-box;
   max-height: 41px;
   -webkit-box-orient: vertical;
-  line-height: 1.4;
+  line-height: 1.3;
 `
 
 const siteInfo = css`
