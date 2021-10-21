@@ -11,16 +11,20 @@ type Props = {
   src: string
   alt: string
   siteName: string
+  icon: string
 }
 
-const LinkCard: VFC<Props> = ({ href, title, desc, src, alt, siteName }) => {
+const LinkCard: VFC<Props> = ({ href, title, desc, src, alt, siteName, icon }) => {
   return (
     <a href={href} target="_blank" rel="noreferrer">
       <div css={container}>
         <div css={siteInfo}>
           <div css={linkTitle}>{title}</div>
           <div css={linkDesc}>{desc}</div>
-          <div css={linkSiteName}>{siteName}</div>
+          <div css={linkSiteInfo}>
+            <img src={icon} alt="site icon" css={linkSiteIcon} />
+            {siteName}
+          </div>
         </div>
 
         <figure css={imageWrapper}>
@@ -68,6 +72,7 @@ const linkDesc = css`
   display: -webkit-box;
   max-height: 41px;
   -webkit-box-orient: vertical;
+  line-height: 1.4;
 `
 
 const siteInfo = css`
@@ -77,7 +82,15 @@ const siteInfo = css`
   height: 100%;
 `
 
-const linkSiteName = css`
+const linkSiteIcon = css`
+  height: 18px;
+  width: 18px;
+`
+
+const linkSiteInfo = css`
+  display: flex;
+  gap: 8px;
+  align-items: center;
   font-size: 0.8rem;
   color: ${colors.blue400};
 `

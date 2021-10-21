@@ -32,6 +32,7 @@ const ArticleBody: FC<Props> = ({ mdBody, ogps }) => {
       src: ogp['og:image'],
       alt: ogp['og:image:alt'],
       siteName: ogp['og:site_name'],
+      icon: ogp['icon'],
     }
 
     return <LinkCard {...linkCardProps} />
