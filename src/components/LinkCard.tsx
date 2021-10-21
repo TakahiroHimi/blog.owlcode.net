@@ -22,7 +22,7 @@ const LinkCard: VFC<Props> = ({ href, title, desc, src, alt, siteName, icon }) =
           <div css={linkTitle}>{title}</div>
           <div css={linkDesc}>{desc}</div>
           <div css={linkSiteInfo}>
-            <img src={icon} alt="site icon" css={linkSiteIcon} />
+            <img src={icon ?? '/noIcon.png'} alt="site icon" css={linkSiteIcon} />
             {siteName}
           </div>
         </div>
