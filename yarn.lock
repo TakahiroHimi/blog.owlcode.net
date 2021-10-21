@@ -4571,10 +4571,10 @@ object.values@^1.1.3, object.values@^1.1.4:
     define-properties "^1.1.3"
     es-abstract "^1.18.2"
 
-ogp-fetcher@^1.0.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/ogp-fetcher/-/ogp-fetcher-1.4.0.tgz#298fde63ce4c5f1bf38f7d9f41a34a55978cc033"
-  integrity sha512-pQu+M2lv8qXehuTGZXvZpUrts45onDyGu9NNl+jHEvZHPmmxhkafVsP/WRhFfn3/pH65gRr5o6LSV0TdJZ0fKw==
+ogp-fetcher@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/ogp-fetcher/-/ogp-fetcher-1.4.5.tgz#34c567fbba6d6116614079bf694e4fc4181e2ac4"
+  integrity sha512-zCNldcGZA52TlTam4Vvs0caXHQkhohmzMYrXQaYiHlEaoNm7OHdsgz3WhV9p1015+GgRhu6LzqetHa53VaP5mg==
   dependencies:
     axios "^0.23.0"
     jsdom "^18.0.0"
