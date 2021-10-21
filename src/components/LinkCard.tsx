@@ -44,7 +44,7 @@ const container = css`
   border: 2px solid ${colors.gray100};
   border-radius: 8px;
   color: ${colors.black80};
-  padding: 16px 16px 8px;
+  padding: 12px 16px 12px;
   box-sizing: border-box;
   gap: 8px;
   background-color: ${colors.blue10};
