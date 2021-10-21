@@ -47,6 +47,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             a:link {
               text-decoration: none;
             }
+            p {
+              line-height: 1.8;
+            }
           }
         `}
       />
