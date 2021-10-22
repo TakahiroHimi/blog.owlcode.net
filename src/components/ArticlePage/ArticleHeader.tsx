@@ -4,6 +4,7 @@ import Icon from '@mdi/react'
 import Tag from 'components/Tag'
 import Image from 'next/image'
 import React, { VFC } from 'react'
+import breakPoints from 'styles/breakPoints'
 import colors from 'styles/colors'
 import { MetaData } from 'utils/types'
 
@@ -57,6 +58,10 @@ const articleTitle = css`
   font-size: 2.5rem;
   font-weight: bold;
   margin-top: 8px;
+
+  @media screen and (max-width: ${breakPoints.lg}) {
+    font-size: 1.8rem;
+  }
 `
 
 const dateContainer = css`
