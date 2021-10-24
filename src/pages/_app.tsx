@@ -45,7 +45,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
               list-style: disc;
             }
             ol {
-              list-style: auto;
+              list-style: decimal;
             }
             a:link {
               text-decoration: none;
