@@ -44,11 +44,17 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             ul {
               list-style: disc;
             }
+            ol {
+              list-style: auto;
+            }
             a:link {
               text-decoration: none;
             }
             p {
               line-height: 1.8;
+            }
+            h2 {
+              border-bottom: 2px solid ${colors.blue100};
             }
           }
         `}
