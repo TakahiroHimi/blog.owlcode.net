@@ -148,8 +148,6 @@ export default Hello
 このブログでは（現時点では）スタイリングライブラリに`emotion`を使用しているため、`_app.tsx`でGlobalなスタイルを定義をする際に`markdown-body`へのスタイルのカスタマイズを書いている。  
 （前述のlist-styleの追加やline-heightの調整など）
 
-<https://github.com/TakahiroHimi/blog.owlcode.net/blob/main/src/pages/_app.tsx>
-
 このパッケージはそもそもただのCSSなので、中身を書き換えてプロジェクトのソースの一部として管理してしまっても良いかもしれない。  
 ライセンス云々は調べてないのでやる方は自己責任で。  
 
