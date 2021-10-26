@@ -26,9 +26,11 @@ const foo: Foo<null> = 'foo' // never型に文字列を入れようとしてる�
 
 ## strictNullChecks
 
-このような挙動になる原因は**tsconfig.jsonに`strictNullChecks = true`が設定されていなかったため**。
+このような挙動になる原因は**tsconfig.jsonに`strictNullChecks = true`が設定されていなかったため**。  
 
 <https://www.typescriptlang.org/tsconfig#strictNullChecks>
+
+※前提として`strict = true`が設定されていればこの項目はデフォルトで`true`になるが、今回のソースは`strict = false`で設定されていた。  
 
 このオプションが設定されていない場合、`null`や`undefined`がどんな型にも代入できてしまう。
 
@@ -49,6 +51,5 @@ const foo: Foo<null> = 'foo'　// OK
 ## End
 
 正確にはパッケージのリポジトリの中に動作確認用のソースがあり、その中の設定で`strictNullChecks`が設定されていなかった。  
-（それどころか`strict = false`になっていた）  
-実際にはもっと複雑な型定義だったため自分が読み間違いしていると思い込んでしまい、怒られない原因が`tsconfig.json`が原因だと気づくまでに結構時間がかかってしまった。  
+実際にはもっと複雑な型定義だったため自分が読み間違いしていると思い込んでしまい、`null`を設定しても怒られない原因が`tsconfig.json`が原因だと気づくまでに結構時間がかかってしまった。  
 ソースを読む際の視野が広がったのでヨシ。  
