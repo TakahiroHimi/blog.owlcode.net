@@ -23,7 +23,7 @@ const LinkCard: VFC<Props> = ({ href, title, desc, src, alt, siteName, icon }) =
           <div css={linkDesc}>{desc}</div>
           <div css={linkSiteInfo}>
             <img src={icon ?? '/noIcon.png'} alt="site icon" css={linkSiteIcon} />
-            {siteName}
+            <span css={linkSiteName}>{siteName}</span>
           </div>
         </div>
 
@@ -49,6 +49,7 @@ const container = css`
   gap: 8px;
   background-color: ${colors.blue10};
   transition: 0.2s;
+  width: 100%;
 
   &:hover {
     background-color: ${colors.blue100}66;
@@ -70,7 +71,7 @@ const linkDesc = css`
   overflow: hidden;
   -webkit-line-clamp: 2;
   display: -webkit-box;
-  max-height: 41px;
+  max-height: 30px;
   -webkit-box-orient: vertical;
   line-height: 1.3;
 `
@@ -80,11 +81,20 @@ const siteInfo = css`
   flex-direction: column;
   gap: 4px;
   height: 100%;
+  width: 100%;
+  overflow: hidden;
 `
 
 const linkSiteIcon = css`
   height: 18px;
   width: 18px;
+`
+
+const linkSiteName = css`
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 `
 
 const linkSiteInfo = css`

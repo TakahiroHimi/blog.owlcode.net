@@ -6,7 +6,7 @@ visual: 'react'
 tags: ['React']
 ---
 
-このブログを作る時「**mdで書いた記事を綺麗にスタイル整ったページとして表示するのめんどいな〜HTMLにパースした後記事中全部のタグにスタイルあてるとか無理〜〜**」と思って**楽してできるやり方を頑張って探した**。  
+このブログを作る時「**mdで書いた記事を綺麗にスタイル整ったページとして表示するの手間だな…HTMLにパースした後記事中全部のタグにスタイルあてるのはしんどい…**」と思って**楽してできるやり方を頑張って探した**。  
 結論として以下二つの神パッケージを使うことでかなり楽できた。  
 
 **react-markdown**
@@ -34,7 +34,7 @@ md形式のテキストをHTMLに変換してくれるパッケージ。
 <https://github.com/remarkjs/remark>  
 
 このブログはNext.jsのチュートリアルで作成したブログを魔改造して作ったものなので当初`remark`を使用していたが、`react-markdown`の方が**シンタックスハイライトをあてるのが楽そう**だったため乗り換えた。  
-「スタイルあてるの無理〜〜」とか言っておきながらシンタックスハイライトにはこだわりたい。  
+「スタイルあてるの無理…」とか言っておきながらシンタックスハイライトにはこだわりたい。  
 HTMLに変換するだけなら正直どっちでも良い気がする。強いて言えば`react-markdown`なら`dangerouslySetInnerHTML`を書かなくて良いので精神衛生上良いかもしれない。  
 
 使い方はかなり簡単
@@ -148,6 +148,8 @@ export default Hello
 このブログでは（現時点では）スタイリングライブラリに`emotion`を使用しているため、`_app.tsx`でGlobalなスタイルを定義をする際に`markdown-body`へのスタイルのカスタマイズを書いている。  
 （前述のlist-styleの追加やline-heightの調整など）
 
+<https://github.com/TakahiroHimi/blog.owlcode.net/blob/main/src/pages/_app.tsx>
+
 このパッケージはそもそもただのCSSなので、中身を書き換えてプロジェクトのソースの一部として管理してしまっても良いかもしれない。  
 ライセンス云々は調べてないのでやる方は自己責任で。  
 
@@ -212,7 +214,7 @@ hoge()
 export default Hello
 ```
 
-(実際には`component`propsに渡す内容は[別ファイルに分けている](https://github.com/TakahiroHimi/blog.owlcode.net/blob/main/src/components/md/CodeBlock.tsx))  
+(実際には`components`propsに渡す内容は[別ファイルに分けている](https://github.com/TakahiroHimi/blog.owlcode.net/blob/main/src/components/md/CodeBlock.tsx))  
 
 表示するとこう
 
@@ -221,7 +223,7 @@ export default Hello
 `SyntaxHighlighter`コンポーネントの`style`propsの内容を変えることでシンタックスハイライトの色を変更することができる。  
 色のサンプルは[こちら](https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/)から確認可能だが、設定可能な全ての色が掲載されているわけでは無い模様。  
 かなり種類が多いので好みのものを選ぶ。  
-`component`propsに渡す内容をゴリゴリカスタマイズすることで**コードブロック左上にファイル名やパスを表示**したり、**コード差分を表示**することもできるっぽい。  
+`components`propsに渡す内容をゴリゴリカスタマイズすることで**コードブロック左上にファイル名やパスを表示**したり、**コード差分を表示**することもできるっぽい。  
 
 <https://goodlife.tech/posts/react-markdown-code-highlight.html>
 
