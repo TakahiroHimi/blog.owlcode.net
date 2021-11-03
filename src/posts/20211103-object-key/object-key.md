@@ -83,7 +83,7 @@ console.log(userProperties) // (2) ['id', 'name']
 
 const value = 'name'
 if (userProperties.includes(value)) {
-  console.log('true')　// true
+  console.log('true') // true
 }
 ```
 
