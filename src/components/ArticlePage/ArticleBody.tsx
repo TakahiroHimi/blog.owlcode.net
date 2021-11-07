@@ -27,7 +27,7 @@ const ArticleBody: FC<Props> = ({ mdBody, ogps }) => {
     const tweetId = href.match(/https:\/\/twitter.com\/.*?\/status\/([0-9]*)/i)
     // Tweetの場合
     if (tweetId) {
-      return <TweetEmbed id={tweetId[1]} />
+      return <TweetEmbed id={tweetId[1]} options={{ conversation: 'none' }} />
     }
 
     const ogp = ogps?.find((ogp) => ogp.url === href)
