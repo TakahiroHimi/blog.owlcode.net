@@ -7,6 +7,7 @@ import { OGPFetchResult } from 'ogp-fetcher'
 import React, { FC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { ReactMarkdownProps } from 'react-markdown/src/ast-to-react'
+import TweetEmbed from 'react-tweet-embed'
 import rehypeRaw from 'rehype-raw'
 
 type Props = {
@@ -21,10 +22,16 @@ const ArticleBody: FC<Props> = ({ mdBody, ogps }) => {
       ReactMarkdownProps
   ) => React.ReactNode = ({ node, ...props }) => {
     const href = typeof node.properties?.href === 'string' ? node.properties?.href : undefined
+    if (!href) return <a {...props} />
+
+    const tweetId = href.match(/https:\/\/twitter.com\/.*?\/status\/([0-9]*)/i)
+    // Tweetの場合
+    if (tweetId) {
+      return <TweetEmbed id={tweetId[1]} />
+    }
+
     const ogp = ogps?.find((ogp) => ogp.url === href)
-
-    if (!href || !ogp) return <a {...props} />
-
+    if (!ogp) return <a {...props} />
     const linkCardProps = {
       href: href,
       title: ogp['og:title'],
