@@ -106,7 +106,7 @@ export default Hello
 先程のコードに実際に入れてみる。
 
 ```ts
-import 'github-markdown-css'
+import 'github-markdown-css' //　追加
 import React, { VFC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import 'reset-css'
@@ -130,7 +130,7 @@ hoge()
 `
 
   return (
-    <div className="markdown-body">
+    <div className="markdown-body"> // classNameを付与するためにdivタグ追加
       <ReactMarkdown>{md}</ReactMarkdown>
     </div>
   )
