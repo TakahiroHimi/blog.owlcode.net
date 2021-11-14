@@ -24,6 +24,9 @@ const ArticleBody: FC<Props> = ({ mdBody, ogps }) => {
     const href = typeof node.properties?.href === 'string' ? node.properties?.href : undefined
     if (!href) return <a {...props} />
 
+    // 文中に挿入されているリンクの場合はreturn
+    if (node.position?.start.column !== 1) return <a {...props} />
+
     const tweetId = href.match(/https:\/\/twitter.com\/.*?\/status\/([0-9]*)/i)
     // Tweetの場合
     if (tweetId) {
