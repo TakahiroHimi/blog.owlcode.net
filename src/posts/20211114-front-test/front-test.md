@@ -1,7 +1,7 @@
 ---
 created: '2020-11-14'
 updated: ''
-title: フロントエンドのテストの種類多すぎ問題を整理
+title: フロントエンドのテストの種類多すぎ問題を整理する
 visual: 'react'
 tags: ['React']
 ---
