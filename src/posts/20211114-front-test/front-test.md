@@ -131,7 +131,7 @@ React公式では以下のように言及されている。
 
 ## スナップショットテスト(Snapshot Test)
 
-**手法の一つであり、コンポーネントに対してのみ行うテスト**。  
+**手法の一つであり、コンポーネントに対して行うテスト**。  
 React公式による簡単な説明。
 <https://ja.reactjs.org/docs/testing-recipes.html>
 >Jest のようなフレームワークでは、toMatchSnapshot / toMatchInlineSnapshot を使ってデータの「スナップショット」を保存することができます。これを使うことで、レンダーされたコンポーネントの出力を「セーブ」しておき、変更がスナップショットへの変更として明示的にコミットされるよう保証できます。  
@@ -149,7 +149,7 @@ Jest公式の説明の方がわかりやすい。
 
 ## ビジュアルリグレッションテスト(Visual Regression Test)
 
-**手法の一つであり、コンポーネントに対してのみ行うテスト**。  
+**手法の一つであり、コンポーネントに対して行うテスト**。  
 `Storybook`のGIFがわかりやすい。  
 <https://storybook.js.org/docs/react/workflows/visual-testing>
 
