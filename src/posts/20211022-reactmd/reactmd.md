@@ -2,7 +2,7 @@
 created: '2020-10-24'
 updated: ''
 title: mdで書いた記事をブログに表示したい、けどCSSはサボりたい
-visual: 'react'
+visual: 'React'
 tags: ['React']
 ---
 
