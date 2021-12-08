@@ -1,7 +1,7 @@
 ---
 created: '2020-12-05'
 updated: ''
-title: StripeElementsのエラーをReactHookFormでvalidationする
+title: StripeElementsのエラーをReactHookFormでvalidationしたい
 visual: 'React'
 tags: ['React', 'Stripe']
 ---
