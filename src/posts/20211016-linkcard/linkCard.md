@@ -1,5 +1,5 @@
 ---
-created: '2020-10-16'
+created: '2021-10-16'
 updated: ''
 title: Linkカードを実装した
 visual: ''

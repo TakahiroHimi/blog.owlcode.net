@@ -1,5 +1,5 @@
 ---
-created: '2020-10-26'
+created: '2021-10-26'
 updated: ''
 title: tsconfigのstrictNullChecksでハマった話
 visual: 'TypeScript'

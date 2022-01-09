@@ -1,5 +1,5 @@
 ---
-created: '2020-11-18'
+created: '2021-11-18'
 updated: ''
 title: enumから特定のkeyを削除した型を作りたい
 visual: 'TypeScript'

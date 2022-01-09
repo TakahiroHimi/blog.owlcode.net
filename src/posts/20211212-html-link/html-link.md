@@ -1,5 +1,5 @@
 ---
-created: '2020-12-12'
+created: '2021-12-12'
 updated: ''
 title: htmlのリンクのベストプラクティス
 visual: ''

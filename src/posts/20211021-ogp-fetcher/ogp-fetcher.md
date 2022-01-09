@@ -1,5 +1,5 @@
 ---
-created: '2020-10-21'
+created: '2021-10-21'
 updated: ''
 title: ブログにリンクカードを実装するときに便利なパッケージを作った
 visual: 'npm'

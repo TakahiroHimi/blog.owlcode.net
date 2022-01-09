@@ -1,5 +1,5 @@
 ---
-created: '2020-10-17'
+created: '2021-10-17'
 updated: ''
 title: npmパッケージを作って公開する
 visual: 'npm'

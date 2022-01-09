@@ -1,5 +1,5 @@
 ---
-created: '2020-10-15'
+created: '2021-10-15'
 updated: ''
 title: tsconfig.jsonを学ぶ
 visual: 'TypeScript'
