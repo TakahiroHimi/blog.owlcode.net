@@ -17,27 +17,21 @@ const ShareIcons: VFC<Props> = ({ title }) => {
   const router = useRouter()
   return (
     <div css={shareButtonsContainer}>
-      <div css={twitterIconWrapper}>
-        <TwitterShareButton
-          url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
-          title={title}
-          via={process.env.NEXT_PUBLIC_TWITTER_ID}
-        >
-          <TwitterIcon size={40} />
-        </TwitterShareButton>
-      </div>
+      <TwitterShareButton
+        url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}
+        title={title}
+        via={process.env.NEXT_PUBLIC_TWITTER_ID}
+      >
+        <TwitterIcon size={40} />
+      </TwitterShareButton>
 
-      <div css={facebookIconWrapper}>
-        <FacebookShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
-          <FacebookIcon size={40} />
-        </FacebookShareButton>
-      </div>
+      <FacebookShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
+        <FacebookIcon size={40} />
+      </FacebookShareButton>
 
-      <div css={hatenaIconWrapper}>
-        <HatenaShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
-          <HatenaIcon size={40} />
-        </HatenaShareButton>
-      </div>
+      <HatenaShareButton url={process.env.NEXT_PUBLIC_ROOT_URL + router.asPath}>
+        <HatenaIcon size={40} />
+      </HatenaShareButton>
     </div>
   )
 }
@@ -46,42 +40,8 @@ export default ShareIcons
 
 const shareButtonsContainer = css`
   display: flex;
-  justify-content: stretch;
+  justify-content: center;
+  gap: 24px;
   margin: 0px auto;
   width: 100%;
 `
-
-const iconBase = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  transition: opacity 0.1s;
-
-  &:hover {
-    opacity: 0.8;
-  }
-`
-
-const twitterIconWrapper = css(
-  iconBase,
-  css`
-    background-color: rgb(0, 172, 237);
-    border-radius: 2px 0px 0px 2px;
-  `
-)
-
-const facebookIconWrapper = css(
-  iconBase,
-  css`
-    background-color: rgb(59, 89, 152);
-  `
-)
-
-const hatenaIconWrapper = css(
-  iconBase,
-  css`
-    background-color: rgb(0, 154, 217);
-    border-radius: 0px 2px 2px 0px;
-  `
-)
