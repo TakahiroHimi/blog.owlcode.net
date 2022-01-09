@@ -1,7 +1,7 @@
 ---
 created: '2022-01-09'
 updated: ''
-title: next/routerで遷移先ページへURLパラメータを渡す
+title: next/routerで遷移先ページへURLパラメータを渡すのに少しハマった話
 visual: 'Nextjs'
 tags: ['Next.js', 'React']
 ---
